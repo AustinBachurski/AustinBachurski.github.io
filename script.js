@@ -1,14 +1,34 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const body = document.body;
-    const toggleButton = document.createElement('button');
-    toggleButton.innerText = 'Toggle Dark Mode';
-    toggleButton.addEventListener('click', toggleDarkMode);
+    document.querySelector("#themeButton")
+        .addEventListener('click', swapDarkLight);
 
-    // Append the toggle button to the body
-    document.body.appendChild(toggleButton);
-
-    // Function to toggle dark mode
-    function toggleDarkMode() {
-        body.classList.toggle('dark-mode');
+    if (window.matchMedia
+        && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        activateDarkMode();
+    } else {
+        activateLightMode();
     }
 });
+
+function swapDarkLight() {
+    const toggleButton = document.querySelector("#themeButton");
+    if (toggleButton.innerText == "Switch to Light Mode") {
+        activateLightMode();
+    } else {
+        activateDarkMode();
+    }
+}
+
+function activateDarkMode() {
+    const mode = document.body.classList;
+    mode.remove("light-mode");
+    mode.add("dark-mode");
+    document.querySelector("#themeButton").innerText = "Switch to Light Mode";
+}
+
+function activateLightMode() {
+    const mode = document.body.classList;
+    mode.remove("dark-mode");
+    mode.add("light-mode");
+    document.querySelector("#themeButton").innerText = "Switch to Dark Mode";
+}

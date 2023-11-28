@@ -4,36 +4,48 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: white;
-    color: black;
 }
 
 .dark-mode{
-    background-color: black;
-    color: white;
+    background-color: #2e2e2e;
+    color: whitesmoke;
+}
+
+.light-mode{
+    background-color: whitesmoke;
+    color: black;
 }
 
 .container {
     display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
+    height: 100vh;
 }
 
 .left-section {
-    flex: 0, 1;
+    flex: 0 1;
     padding: 20px;
-    background-color: #f0f0f0;
 }
 
 .left-section img {
     width: 100%;
-    border-radius: 50%;
+    border-radius: 10%;
+}
+
+.header {
+    height: 100px;
+}
+
+.filler {
+    flex: 1 auto;
+    overflow: auto;
 }
 
 .right-section {
     flex: 1;
+    background-color: #1d1d1d;
     padding: 20px;
-    background-color: #fff;
+    margin: 10px;
+    border: 1px solid #474747;
     border-radius: 10px;
 }
 
