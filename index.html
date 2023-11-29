@@ -1,52 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>Your Name - Portfolio</title>
-</head>
-<body>
-    <div class="container">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <title>Austin Bachurski - Portfolio</title>
+    </head>
+    <body>
+        <div class="container">
 
-        <!-- Left Section -->
-        <div id="leftSection", class="left-section">
-            <header>
-            <img src="picture\picture.png" alt="Picture missing...">
-            <h1>Joseph<br>Austin<br>Bachurski</h1>
+            <!-- Left Section -->
+            <div id="leftSection", class="left-section">
+                <header>
+                    <img src="picture\picture.png" alt="Picture missing...">
+                    <h1 class="myName">Joseph<br>Austin<br>Bachurski</h1>
+                    <!-- Navigation Links -->
+                    <div class="buttons">
+                        <label>
+                            <input type="checkbox" name="skills">
+                            <span></span>
+                            <b>Skills</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="about">
+                            <span></span>
+                            <b>About Me</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="resume">
+                            <span></span>
+                            <b>Resume</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="projects">
+                            <span></span>
+                            <b>Projects</b>
+                        </label>
+                    </div>
+                </header>
+                <div class="filler"></div>
+            </div>
 
-            <!-- Navigation Links -->
-            <nav>
-                <ul>
-                    <li><a href="#skills"><b>Skills</b></a></li>
-                    <hr>
-                    <li><a href="#about"><b>About Me</b></a></li>
-                    <hr>
-                    <li><a href="#resume"><b>Resume</b></a></li>
-                    <hr>
-                    <li><a href="#projects"><b>Projects</b></a></li>
-                    <hr>
-                </ul>
-            </nav>
-            </header>
-
-            <button id="themeButton" type="button">Theme</button>
-
-            <div class="filler"></div>
-        </div>
-
-        <!-- Right Section -->
-        <div id="rightSection", class="right-section">
+            <!-- Right Section -->
+            <!--
+                <div id="rightSection" class="right-section">
+            -->
             <!-- Content Sections -->
             <div id="skills" class="content-section">
                 <h2><b>Skills</b></h2>
-                <!-- Add your skills and proficiency indicators here -->
+                <li><h3>C++</h3>
+                    <span class="bar"><span class="cpp"></span></span>
+                </li>
+
+                <li><h3>Python<h3>
+                            <span class="bar"><span class="python"></span></span>
+                </li>
+
+                <li><h3>SQL</h3>
+                    <span class="bar"><span class="sql"></span></span>
+                </li>
+
+                <li><h3>C#</h3>
+                    <span class="bar"><span class="csharp"></span></span>
+                </li>
+
+                <li><h3>CMake</h3>
+                    <span class="bar"><span class="cmake"></span></span>
+                </li>
+
+                <li><h3>C</h3>
+                    <span class="bar"><span class="c"></span></span>
+                </li>
+
+                <li><h3>JavaScript</h3>
+                    <span class="bar"><span class="js"></span></span>
+                </li>
+
+                <li><h3>HTML & CSS</h3>
+                    <span class="bar"><span class="html"></span></span>
+                </li>
             </div>
 
             <div id="about" class="content-section">
                 <h2>About Me</h2>
-                <!-- Add information about yourself here -->
+                <p>
+                I began my self-taught journey into programming January 2021, 
+                starting with C++ and expanding into Python, C#, SQL, C, and 
+                JavaScript. This followed a successful 18-year career in the 
+                mechanical field, where I spent 4 years as a supervisor and 14
+                years as a mechanic. For the last 1.5 years I have been
+                applying my problem-solving skills in a GIS role. My goal is
+                to transition into a programming career within the next year.
+                I still have a lot to learn, but I'm as driven as they come 
+                and I've yet to find something I couldn't become good at if 
+                I set my mind to it.
+                <br><br>
+                C++ has been my primary focus as I am drawn to the complexity 
+                and control that the language offers. After getting a solid 
+                grasp on the fundamentals, I began adding more "tools to the 
+                toolbox" starting with Python. My move to a GIS role provided 
+                numerous opportunities for automating repatative data entry
+                and mapping tasks, and allowed me to learn and work with SQL 
+                via our GIS database. I find myself writing at least one simple 
+                script each week to make my workflows more efficient. After 
+                running into limitations in speed and portability with Python, 
+                I returned my focus to C++.  I'll never forget seeing the 
+                speed increase for the first time, I thought it didn't work at 
+                all because the window closed so fast, then I checked the 
+                output file... Pretty sure that is when I got bit by the 
+                performance bug, I love making things faster and more efficient.  
+                <br><br>
+                After acquiring a C++ Nanodegree from Udacity and getting a few 
+                projects under my belt, I took several courses in C#, SQL, C, 
+                and JavaScript to broaden my skillset and expose me to 
+                additional ways of solving problems. My almost two decades of 
+                mechanical diagnosis and repair have given me a "can do" 
+                attitude and a unique view to problem solving. Vehicles and 
+                equipment now a days are pretty much computers with wheels and
+                electrical diagnosis was my specialty throughout my previous 
+                career, maybe some day I'll pursue a career in embedded systems
+                and "return to my roots" in the automotive field.  For now, I
+                look forward to learning everything I can about software and 
+                systems and honing a new set of skills. It's been a journey 
+                already, but I'm just getting started.
+                <br> <br>
+                My wife and I had our first child, a baby boy, in December of 
+                2022, so he takes up most of our free time.  When I do get a 
+                chance to get away I enjoy PC gaming, going to see movies with 
+                my wife, and weekend barbeques with friends and family.
+                </p>
             </div>
 
             <div id="resume" class="content-section">
@@ -58,8 +141,7 @@
                 <h2>Projects</h2>
                 <!-- Add details about your projects here -->
             </div>
-        </div>
-    </div>
+                </div>
 
-</body>
+    </body>
 </html>

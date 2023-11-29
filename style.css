@@ -4,16 +4,9 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.dark-mode{
-    background-color: #2e2e2e;
+    background-color: #212121;
+    /*background-color: #2e2e2e;*/
     color: whitesmoke;
-}
-
-.light-mode{
-    background-color: whitesmoke;
-    color: black;
 }
 
 .container {
@@ -24,6 +17,8 @@ body {
 .left-section {
     flex: 0 1;
     padding: 20px;
+    border-right: solid #616161;
+    background-color: #3a3a3a;
 }
 
 .left-section img {
@@ -31,8 +26,69 @@ body {
     border-radius: 10%;
 }
 
-.header {
-    height: 100px;
+.myName {
+    text-align: center;
+    padding: 5px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.buttons label {
+    position: relative;
+    width: 180px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.buttons input {
+    appearance: none;
+}
+
+.buttons label span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#555353, #363535, #303030);
+    border: 2px solid #222;
+    border-radius: 6px;
+    box-shadow: inset 0 5px 1px rgba(0, 0, 0, 0.35),
+    0 5px 5px rgba(0, 0, 0, 0.5),
+    0 15px 25px rgba(0, 0, 0, 0.35);
+}
+
+.buttons label input:checked ~ span {
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.35),
+    inset 0 5px 5px rgba(0, 0, 0, 0.5),
+    inset 0 15px 25px rgba(0, 0, 0, 0.35);
+}
+
+.buttons label span::before {
+    content: '';
+    position: absolute;
+    inset: 5px 3px;
+    border-top: 1px solid #ccc;
+    filter: blur(2px);
+}
+
+.buttons label b {
+    position: relative;
+    z-index: 10;
+    font-size: 1.5em;
+    color: #068c91;
+}
+
+.buttons label input:checked ~ b {
+    color: #03fdfe;
+    text-shadow: 0 0 5px #219cf3, 0 0 8px #219cf3;
 }
 
 .filler {
@@ -40,26 +96,130 @@ body {
     overflow: auto;
 }
 
-.right-section {
-    flex: 1;
-    background-color: #1d1d1d;
-    padding: 20px;
-    margin: 10px;
-    border: 1px solid #474747;
-    border-radius: 10px;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav li {
-    margin-bottom: 10px;
-}
-
 .content-section {
-    margin-top: 20px;
+    flex: 1;
+    background-color: #3a3a3a;
+    width: 800px;
+    height: 650px;
+    color: #fff;
+    margin: 40px;
+    padding: 20px;
+    border: 1px solid #616161;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-/* Add more styling as needed */
+.content-section h2 {
+    font-size: 32px;
+}
+
+/* SKILLS */
+
+#skills {
+    list-style-type: none;
+}
+
+#skills i {
+    margin: 20px 0;
+}
+
+.bar {
+    background: #353b48;
+    display: block;
+    height: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.bar:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.bar span {
+    height: 10px;
+    float: left;
+    background: linear-gradient(135deg, rgba(3, 20, 155, 1)0%, rgba(3, 253, 254, 1)100%);
+}
+
+.cpp {
+    width: 90%;
+    animation: cpp 1s;
+}
+
+.python {
+    width: 85%;
+    animation: python 1s;
+}
+
+.sql {
+    width: 85%;
+    animation: sql 1s;
+}
+
+.csharp {
+    width: 75%;
+    animation: csharp 1s;
+}
+
+.cmake {
+    width: 70%;
+    animation: cmake 1s;
+}
+
+.c {
+    width: 50%;
+    animation: c 1s;
+}
+
+.js {
+    width: 40%;
+    animation: js 1s;
+}
+
+.html {
+    width: 20%;
+    animation: html 1s;
+}
+
+@keyframes cpp {
+    0% { width: 0%; }
+    100% { width: 90%; }
+}
+
+@keyframes python {
+    0% { width: 0%; }
+    100% { width: 85%; }
+}
+
+@keyframes sql {
+    0% { width: 0%; }
+    100% { width: 85%; }
+}
+
+@keyframes csharp {
+    0% { width: 0%; }
+    100% { width: 75%; }
+}
+
+@keyframes cmake {
+    0% { width: 0%; }
+    100% { width: 70%; }
+}
+
+@keyframes c {
+    0% { width: 0%; }
+    100% { width: 50%; }
+}
+
+@keyframes js {
+    0% { width: 0%; }
+    100% { width: 40%; }
+}
+
+@keyframes html {
+    0% { width: 0%; }
+    100% { width: 20%; }
+}

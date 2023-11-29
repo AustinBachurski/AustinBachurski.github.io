@@ -1,34 +1,32 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector("#themeButton")
-        .addEventListener('click', swapDarkLight);
+    const checkboxes = document.querySelectorAll('.buttons input');
+    const contentSections = document.querySelectorAll('.content-section');
 
-    if (window.matchMedia
-        && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        activateDarkMode();
-    } else {
-        activateLightMode();
-    }
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            const correspondingSection = document.getElementById(this.name);
+
+            if (correspondingSection) {
+                contentSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                if (this.checked) {
+                    correspondingSection.style.display = 'block';
+                } else {
+                    correspondingSection.style.display = 'none';
+                }
+
+                checkboxes.forEach(otherCheckbox => {
+                    if (otherCheckbox !== this) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+            }
+        });
+    });
+
+    const initialCheckbox = document.querySelector('input[name="skills"]');
+    initialCheckbox.checked = true;
+    initialCheckbox.dispatchEvent(new Event('change'));
 });
-
-function swapDarkLight() {
-    const toggleButton = document.querySelector("#themeButton");
-    if (toggleButton.innerText == "Switch to Light Mode") {
-        activateLightMode();
-    } else {
-        activateDarkMode();
-    }
-}
-
-function activateDarkMode() {
-    const mode = document.body.classList;
-    mode.remove("light-mode");
-    mode.add("dark-mode");
-    document.querySelector("#themeButton").innerText = "Switch to Light Mode";
-}
-
-function activateLightMode() {
-    const mode = document.body.classList;
-    mode.remove("dark-mode");
-    mode.add("light-mode");
-    document.querySelector("#themeButton").innerText = "Switch to Dark Mode";
-}
