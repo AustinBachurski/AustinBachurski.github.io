@@ -254,8 +254,9 @@ body {
 }
 
 .project-content-horizontal img {
-    padding-right: 10px;
-    max-width: 900px;
+    max-height: 150px;
+    max-width: 1000px;
+    object-fit: contain;
 }
 
 .description {
