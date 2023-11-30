@@ -37,6 +37,11 @@
                             <span></span>
                             <b>Projects</b>
                         </label>
+                        <label>
+                            <input type="checkbox" name="links">
+                            <span></span>
+                            <b>Links</b>
+                        </label>
                     </div>
                 </header>
                 <div class="filler"></div>
@@ -220,7 +225,7 @@
                         <li>
                             My strong work ethic was reflected in my 
                             performance, where I consistently exceeded the 
-                             output of my coworkers by 38% on average.
+                            output of my coworkers by 38% on average.
                         </li>
                     </ul>
                 </ul>
@@ -228,62 +233,237 @@
 
             <div id="projects" class="content-section">
                 <header><b>Projects</b></header>
-                
-                <p><b>Services Controller for Esri Enterprise Portal</b></p>
-                <label class="psc">
+
+                <div class="project-title">
+                    <p><img src="pictures/cpp.png"/>&nbsp&nbsp<b>Services Controller for Esri Enterprise Portal</b></p>
+                </div>
+
+                <div class="psc">
                     <img src="pictures/psc.png"
                          alt="Screenshot of controller in action."/>
-                    <p>
-                    This application provides a simple, user-friendly interface 
-                    that allows users to quickly view and control the state of 
-                    services on an Esri Enterprise Portal Server.
-                    <br><br>
-                    The directory, name, and state of every service on the 
-                    server can be viewed via an easy to understand context 
-                    menu and selectable text frame. Users can start or stop all 
-                    services at once with a couple clicks of the top menu bar, 
-                    allowing server maintenance tasks or service modifications 
-                    to be performed without wasting time clicking stop or start 
-                    on dozens of services using ArcGIS Server Manager, or 
-                    manually maintaining a long list of services in JSON format 
-                    using ArcGIS Server Administrator Directory.
-                    </p>
-                </label>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
+                    <div class="description">
+                        <p>
+                        This application provides a simple, user-friendly interface 
+                        that allows users to quickly view and control the state of 
+                        services on an Esri Enterprise Portal Server.
+                        <br><br>
+                        The directory, name, type, and state of every service on the 
+                        server can be viewed via an easy to understand context 
+                        menu and selectable text frame. Users can start or stop all 
+                        services at once with a couple clicks of the top menu bar, 
+                        allowing server maintenance tasks or service modifications 
+                        to be performed without wasting time clicking stop or start 
+                        on dozens of services using ArcGIS Server Manager, or 
+                        manually maintaining a long list of services in JSON format 
+                        using ArcGIS Server Administrator Directory. This tool 
+                        is used weekly by other members of my department to this
+                        day.
+                        <br><br>
+                        I've learned a lot since writing this, looking at the 
+                        code today makes me want re-write it, but I did learn
+                        a lot in the process of developing this tool. For my 
+                        first decent project I'm pleased with the way the tool 
+                        functions, and it did solve the problem I set out to 
+                        solve, so I suppose I can't complain. 
+                        </p>
+                        <div class="link">
+                            <button class="psc-repo" type="button" onclick="window.open('https://github.com/AustinBachurski/Enterprise-Portal-Services-Controller-GUI')">View the Code on GitHub</button>
+                        </div>
+                    </div>
                 </div>
+
+                <br><br><br>
+
+                <div class="project-title">
+                    <p><img src="pictures/cpp.png"/><img src="pictures/python.png"/>&nbsp&nbsp<b>Crime Map Update Wizard</b></p>
+                </div>
+
+                <div class="psc">
+                    <img src="pictures/wizard.png"
+                         alt="Screenshot of the wizard."/>
+                    <div class="description">
+                        <p>
+                        This tool was written to help the volunteers at the 
+                        Kalispell Police Department update the Kalispell Crime 
+                        Heatmap quickly and easily, no more copy/pasting in 
+                        Excel, and no need to open ArcGIS Pro.
+                        <br><br>
+                        Crime Map Wizard is a newer version of the Crime Map 
+                        Update Assistant that provides a graphical wizard with 
+                        the previous three geoprocessing scripts improved and 
+                        condensed into a single script. The user interface and 
+                        Excel parser is written in C++ using wxWidgets, and the 
+                        geoprocessing script is written in Python using the 
+                        ArcGIS ArcPy module.
+                        <br><br>
+                        Quite a simple little application, its purpose wat to
+                        make life easier on the Police Department volunteer who
+                        performs the weekly work to update the Kalispell Crime
+                        Map. Previously it was seven Excel sheets of copy/paste
+                        before manually converting the .csv to GIS data and 
+                        uploading the data to a web map. The volunteers are
+                        generally retired officers or military and may not be
+                        proficient with computers. The tool was made to be as
+                        simple as possible, with a video how-to for every step.
+                        Originally written in Python, I converted it to C++ 
+                        because it needed to be portable.  The volunteer
+                        computer is located inside our local Police Department.
+                        </p>
+                        <div class="link">
+                            <button class="psc-repo" type="button" onclick="window.open('https://github.com/AustinBachurski/Crime-Map-Wizard')">View the Code on GitHub</button>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div class="project-title">
+                    <p><img src="pictures/cpp.png"/>&nbsp&nbsp<b>Building Permit Parser</b></p>
+                </div>
+
+                <div class="psc">
+                    <img src="pictures/parser.png"
+                         alt="Screenshot of the parser."/>
+                    <div class="description">
+                        <p>
+                        I didn't really have an interest in game development at
+                        the time, so for the final project in the C++ 
+                        Nanodegree program I chose to build a project of my 
+                        choice, a spreadsheet parsing tool to help make work 
+                        easier for my coworkers in the Kalispell Building 
+                        Department.
+                        <br><br>
+                        The tool parses out building permit information from a 
+                        tracking spreadsheet to quickly provide totals for year 
+                        end reports. The tool automatically loads and parses the 
+                        sheet for the previous calendar year when ran and 
+                        displays the information to the user. A "Copy" button 
+                        near each displayed value loads the information into the 
+                        operating system clipboard so it can be easily pasted 
+                        into a report document with minimal effort required by 
+                        the user. This was one of my first projects.
+                        </p>
+                        <div class="link">
+                            <button class="psc-repo" type="button" onclick="window.open('https://github.com/AustinBachurski/BuildingPermitParser')">View the Code on GitHub</button>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div class="project-title">
+                    <p><img src="pictures/csharp.png"/>&nbsp&nbsp<b>Battleship Game</b></p>
+                </div>
+
+                <div class="psc">
+                    <img src="pictures/battleship.png"
+                         alt="Screenshot of the game board."/>
+                    <div class="description">
+                        <p>
+                        Console clone of the Battleship board game, written in
+                        C#. Capstone Project for the Skill Foundry 
+                        "Object-Oriented Programming in C#" course.
+                        <br><br>
+                        My first attempt at a game, the course gave the prompt
+                        for what the game should be, but didn't define how we
+                        were to go about it.  So the methods in place are my 
+                        creation.  Contains unit tests for game and score
+                        functions, capable of player vs player, 
+                        player vs computer, or computer vs computer battle.
+                        </p>
+                        <div class="link">
+                            <button class="psc-repo" type="button" onclick="window.open('https://github.com/AustinBachurski/Battleship-Game')">View the Code on GitHub</button>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div class="project-title">
+                    <p><img src="pictures/csharp.png"/>&nbsp&nbsp<b>Building Permit Monitor</b></p>
+                </div>
+
+                <div class="psc">
+                    <img src="pictures/monitor.png"
+                         alt="Screenshot of the parser."/>
+                    <div class="description">
+                        <p>
+                        A simple system tray/notification area application that 
+                        monitors our Cityworks database for newly issued 
+                        building permits. Building permit information needs to 
+                        be tracked in a spreadsheet as well as mapped in our 
+                        GIS, this application streamlines the process by 
+                        pulling the data from our Cityworks API, parsing out 
+                        what is needed, displaying a validation window for user 
+                        verification, then inserting the validated data into the 
+                        tracking spreadsheet. The database is checked every 30 
+                        minutes for updates, toast notifications inform of work 
+                        to be done, clicking the notification triggers data 
+                        retrieval and parsing.
+                        <br><br>
+                        This tool was written to assist in tracking and mapping
+                        building permit data, which is part of the daily 
+                        workflow in my current role. I had intentions of writing
+                        it in C++, but I had just finished a C# course and 
+                        wanted to put my newly learned skills to practical use.
+                        The UI is a bit strange at first glance - I wanted 
+                        something compact that could live in/around the 
+                        notification area. I get a popup notification from the 
+                        tool when there's a new permit to record. Clicking the
+                        notification spawns the validation window, I click a
+                        few buttons, maybe enter a text value or two, hit
+                        submit, and get back to what I was doing with minimal
+                        delay.
+                        </p>
+                        <div class="link">
+                            <button class="psc-repo" type="button" onclick="window.open('https://github.com/AustinBachurski/Building-Permit-Monitor')">View the Code on GitHub</button>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div class="project-title">
+                    <p><img src="pictures/python.png"/>&nbsp&nbsp<b>Mailer Generator</b></p>
+                </div>
+
+                <div class="psc">
+                    <img src="pictures/mailer.png"
+                         alt="Screenshot of the parser."/>
+                    <div class="description">
+                        <p>
+                        Generates the Mailing List and Mailing List Map needed 
+                        by Development Services.
+                        <br><br>
+                        Producing a spreadsheet of addresses for a mailing list
+                        and a map to include in th mailer is a daily part of the
+                        workflow in my curren role. Development Services 
+                        personnel will supply an address, tract id, or assessor
+                        number for a land parcel as well as specify a distance 
+                        for addresses to include in the mailing list.
+                        Previously done manually with GIS software, this tool
+                        reduced response time to less than 2 minutes in most
+                        cases.
+                        </p>
+                        <div class="link">
+                            <button class="psc-repo" type="button" onclick="window.open('https://github.com/AustinBachurski/MailerGenerator')">View the Code on GitHub</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="links" class="content-section">
+                <header><b>Links</b></header>
+                <a href="" target="_blank"></a>
+                <br><br>
+                <a href="" target="_blank"></a>
+                <br><br>
+                <a href="" target="_blank"></a>
+                <br><br>
+                <a href="" target="_blank"></a>
+                <br><br>
+            </div>
+        </div>
 
     </body>
 </html>
