@@ -104,7 +104,7 @@ body {
     color: #fff;
     margin: 40px;
     padding: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     height: fit-content;
     overflow: auto;
     border: 1px solid #616161;
@@ -129,6 +129,11 @@ body {
 
 #skills i {
     margin: 20px 0;
+}
+
+#skills img {
+    vertical-align: middle;
+    height: 45px;
 }
 
 .bar {
@@ -234,12 +239,23 @@ body {
 
 /* PROJECTS */
 
-.psc {
+.project-content {
     display: inline-flex;
 }
 
-.psc img {
+.project-content img {
     padding-right: 10px;
+    height: fit-content;
+}
+
+.project-content-horizontal {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.project-content-horizontal img {
+    padding-right: 10px;
+    max-width: 900px;
 }
 
 .description {
@@ -252,7 +268,7 @@ body {
     justify-content: center;
 }
 
-.psc-repo {
+.view-code {
     width: 10em;
     position: relative;
     height: 3.5em;
@@ -267,34 +283,50 @@ body {
     cursor: pointer;
 }
 
-.psc-repo::after {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 3%;
-    width: 95%;
-    height: 40%;
-    background-color: #3a3a3a;
-    transition: 0.5s;
-    transform-origin: center;
-}
-
-.psc-repo::before {
-    content: "";
-    transform-origin: center;
-    position: absolute;
-    top: 80%;
-    left: 3%;
-    width: 95%;
-    height: 40%;
-    background-color: #3a3a3a;
-    transition: 0.5s;
-}
-
-.psc-repo:hover::before, .psc-repo:hover::after {
-    transform: scale(0)
-}
-
-.psc-repo:hover {
+.view-code:hover {
     box-shadow: inset 0px 0px 25px #1479EA;
+}
+
+/* LINKS */
+
+.social-links {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.social-links:hover,
+.social-links:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.social-links:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.social-links:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
 }
