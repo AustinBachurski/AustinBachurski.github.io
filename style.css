@@ -1,11 +1,70 @@
-/* styles.css */
+:root {
+    --dark-base: #212121;
+    --dark-window: #3a3a3a;
+    --dark-accent: #616161;
+    --dark-text: whitesmoke;
+    --dark-button-a: #555353;
+    --dark-button-b: #363535;
+    --dark-button-c: #303030;
+    --dark-skills-bar: #353b48;
+
+
+    --light-base: #f0f0f0;
+    --light-window: #d3d3d3;
+    --light-accent: #404040;
+    --light-text: black;
+    --light-button-a: #8C8B8A;
+    --light-button-b: #B5B4B3;
+    --light-button-c: #D1D0D0;
+    --light-skills-bar: #718093;
+
+    --base-background-color: var(--dark-base);
+    --window-background-color: var(--dark-window);
+    --accent-color: var(--dark-accent);
+    --text-color: var(--dark-text);
+    --button-color-a: var(--dark-button-a);
+    --button-color-b: var(--dark-button-b);
+    --button-color-c: var(--dark-button-c);
+    --skills-bar-color: var(--dark-skills-bar);
+}
+
+.light-mode {
+    --base-background-color: var(--light-base);
+    --window-background-color: var(--light-window);
+    --accent-color: var(--light-accent);
+    --text-color: var(--light-text);
+    --button-color-a: var(--light-button-a);
+    --button-color-b: var(--light-button-b);
+    --button-color-c: var(--light-button-c);
+    --skills-bar-color: var(--light-skills-bar);
+}
+
+.dark-mode {
+    --base-background-color: var(--dark-base);
+    --window-background-color: var(--dark-window);
+    --accent-color: var(--dark-accent);
+    --text-color: var(--dark-text);
+    --button-color-a: var(--dark-button-a);
+    --button-color-b: var(--dark-button-b);
+    --button-color-c: var(--dark-button-c);
+    --skills-bar-color: var(--dark-skills-bar);
+}
+
+@media (prefers-color-scheme: light) {
+    :root{
+        --base-background-color: var(--light-base);
+        --window-background-color: var(--light-window);
+        --accent-color: var(--light-accent);
+        --text-color: var(--light-text);
+    }
+}
 
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #212121;
-    color: whitesmoke;
+    background-color: var(--base-background-color);
+    color: var(--text-color);
 }
 
 .container {
@@ -18,8 +77,8 @@ body {
 .left-section {
     flex: 0 1;
     padding: 20px;
-    border-right: solid #616161;
-    background-color: #3a3a3a;
+    border-right: solid var(--accent-color);
+    background-color: var(--window-background-color);
 }
 
 .left-section img {
@@ -58,7 +117,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(#555353, #363535, #303030);
+    background: linear-gradient(var(--button-color-a), var(--button-color-b), var(--button-color-c));
     border: 2px solid #222;
     border-radius: 6px;
     box-shadow: inset 0 5px 1px rgba(0, 0, 0, 0.35),
@@ -100,14 +159,14 @@ body {
 .content-section {
     display: inline-flex;
     flex: auto;
-    background-color: #3a3a3a;
-    color: #fff;
+    background-color: var(--window-background-color);
+    color: var(--text-color);
     margin: 40px;
     padding: 20px;
     max-width: 1000px;
     height: fit-content;
     overflow: auto;
-    border: 1px solid #616161;
+    border: 1px solid var(--accent-color);
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -137,7 +196,7 @@ body {
 }
 
 .bar {
-    background: #353b48;
+    background: var(--skills-bar-color);
     display: block;
     height: 10px;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -276,7 +335,7 @@ body {
     border: 3px ridge #149CEA;
     outline: none;
     background-color: transparent;
-    color: white;
+    color: var(--text-color);
     transition: 1s;
     border-radius: 0.3em;
     font-size: 16px;
@@ -299,9 +358,8 @@ body {
   color: #39739d;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 1.15385;
   margin: 0;
   outline: none;
@@ -329,5 +387,5 @@ body {
 .social-links:active {
   background-color: #a0c7e4;
   box-shadow: none;
-  color: #2c5777;
+  color: 2c5777;
 }
