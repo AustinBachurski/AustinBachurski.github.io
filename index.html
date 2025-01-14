@@ -10,6 +10,45 @@
     <body>
         <div class="container">
 
+            <div class="navbar">
+                <button class="hamburger" onclick="toggleMenu()"> ☰ </button>
+                <nav id="navMenu" class="hidden">
+                    <div class="buttons">
+                        <label>
+                            <input type="checkbox" name="skills">
+                            <span></span>
+                            <b>Skills</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="about">
+                            <span></span>
+                            <b>About Me</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="work-history">
+                            <span></span>
+                            <b>Work History</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="projects">
+                            <span></span>
+                            <b>Projects</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="blog">
+                            <span></span>
+                            <b>Learning Blog</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="links">
+                            <span></span>
+                            <b>Links</b>
+                        </label>
+                        <button id="swap-colors" onclick="swapColors()">Toggle Light/Dark Mode</button>
+                    </div>
+                </nav>
+            </div>
+
             <!-- Left Section -->
             <div id="leftSection" class="left-section">
                 <header>
@@ -36,6 +75,11 @@
                             <input type="checkbox" name="projects">
                             <span></span>
                             <b>Projects</b>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="blog">
+                            <span></span>
+                            <b>Learning Blog</b>
                         </label>
                         <label>
                             <input type="checkbox" name="links">
@@ -497,6 +541,22 @@
                     </div>
                 </div>
             </div>
+
+            <div id="blog" class="content-section">
+                <header><b>Learning Blogs</b></header>
+
+                <div class="project-title">
+                    <p>Coming soon!</p>
+                </div>
+                <div class="project-content">
+                    <div class="description">
+                        <p>
+                            Seriously, probably tomorrow, ran out of time for today, lol.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
 
             <div id="links" class="content-section">
                 <header><b>Links</b></header>

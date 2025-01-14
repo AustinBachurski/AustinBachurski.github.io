@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const checkboxes = document.querySelectorAll('.buttons input');
     const contentSections = document.querySelectorAll('.content-section');
+    const navMenu = document.getElementById('navMenu');
 
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function () {
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (this.checked) {
                     correspondingSection.style.display = 'block';
+                    navMenu.classList.value = 'hidden';
                 } else {
                     correspondingSection.style.display = 'none';
                 }
@@ -22,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         otherCheckbox.checked = false;
                     }
                 });
+
             }
         });
     });
@@ -59,3 +62,8 @@ function swapColors() {
         button.innerText = "Toggle Light Mode";
     }
 }
+
+function toggleMenu() {
+    navMenu.classList.toggle('hidden');
+}
+
