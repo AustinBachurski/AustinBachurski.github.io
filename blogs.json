@@ -1,0 +1,11 @@
+[
+    {
+        "title": "Address Sanitizer is not Infallible",
+        "file": "blogs/byte_ordering_and_asan.html"
+    },
+    {
+        "title": "Optimal String Mutation in Rust",
+        "file": "blogs/rust_string_mutation.html"
+    }
+]
+

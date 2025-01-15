@@ -1,8 +1,8 @@
 :root {
     --dark-base: #212121;
-    --dark-window: #3a3a3a;
+    --dark-window: #131516;
     --dark-accent: #616161;
-    --dark-text: whitesmoke;
+    --dark-text: #e8e6e3;
     --dark-button-a: #555353;
     --dark-button-b: #363535;
     --dark-button-c: #303030;
@@ -78,7 +78,7 @@ body {
 }
 
 .hamburger {
-    position: fixed;
+    position: absolute;
     top: 10px;
     left: 20px;
     font-size: 24px;
@@ -186,14 +186,14 @@ nav a:hover {
     border: 2px solid #222;
     border-radius: 6px;
     box-shadow: inset 0 5px 1px rgba(0, 0, 0, 0.35),
-    0 5px 5px rgba(0, 0, 0, 0.5),
-    0 15px 25px rgba(0, 0, 0, 0.35);
+        0 5px 5px rgba(0, 0, 0, 0.5),
+        0 15px 25px rgba(0, 0, 0, 0.35);
 }
 
 .buttons label input:checked ~ span {
     box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.35),
-    inset 0 5px 5px rgba(0, 0, 0, 0.5),
-    inset 0 15px 25px rgba(0, 0, 0, 0.35);
+        inset 0 5px 5px rgba(0, 0, 0, 0.5),
+        inset 0 15px 25px rgba(0, 0, 0, 0.35);
 }
 
 .buttons label span::before {
@@ -238,6 +238,45 @@ nav a:hover {
 
 .content-section header {
     font-size: 32px;
+}
+
+.blog-container * {
+    display: block;
+}
+
+li {
+    margin: 10px;
+}
+
+pre {
+    white-space: pre-wrap;
+    background-color: var(--base-background-color);
+    color: var(--text-color);
+    font-family: monospace;
+    font-size: 14px;
+}
+
+code {
+    display: inline !important;
+    white-space: pre-wrap;
+    background-color: var(--base-background-color);
+    color: var(--text-color);
+    font-family: monospace;
+    font-size: 14px;
+}
+
+a {
+    display: inline !important;
+    font-size: 20px;
+    color: #3391ff;
+}
+
+strong {
+    display: inline !important;
+}
+
+i {
+    display: inline !important;
 }
 
 .project-title img {
@@ -322,43 +361,43 @@ nav a:hover {
 }
 
 @keyframes cpp {
-    0% { width: 0%; }
-    100% { width: 90%; }
+0% { width: 0%; }
+100% { width: 90%; }
 }
 
 @keyframes python {
-    0% { width: 0%; }
-    100% { width: 85%; }
+0% { width: 0%; }
+100% { width: 85%; }
 }
 
 @keyframes sql {
-    0% { width: 0%; }
-    100% { width: 85%; }
+0% { width: 0%; }
+100% { width: 85%; }
 }
 
 @keyframes csharp {
-    0% { width: 0%; }
-    100% { width: 75%; }
+0% { width: 0%; }
+100% { width: 75%; }
 }
 
 @keyframes cmake {
-    0% { width: 0%; }
-    100% { width: 70%; }
+0% { width: 0%; }
+100% { width: 70%; }
 }
 
 @keyframes c {
-    0% { width: 0%; }
-    100% { width: 50%; }
+0% { width: 0%; }
+100% { width: 50%; }
 }
 
 @keyframes js {
-    0% { width: 0%; }
-    100% { width: 40%; }
+0% { width: 0%; }
+100% { width: 40%; }
 }
 
 @keyframes html {
-    0% { width: 0%; }
-    100% { width: 20%; }
+0% { width: 0%; }
+100% { width: 20%; }
 }
 
 /* PROJECTS */
@@ -412,42 +451,42 @@ nav a:hover {
 /* LINKS */
 
 .social-links {
-  background-color: #e1ecf4;
-  border-radius: 3px;
-  border: 1px solid #7aa7c7;
-  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
-  box-sizing: border-box;
-  color: #39739d;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1.15385;
-  margin: 0;
-  outline: none;
-  padding: 8px .8em;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  white-space: nowrap;
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.15385;
+    margin: 0;
+    outline: none;
+    padding: 8px .8em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
 }
 
 .social-links:hover,
 .social-links:focus {
-  background-color: #b3d3ea;
-  color: #2c5777;
+    background-color: #b3d3ea;
+    color: #2c5777;
 }
 
 .social-links:focus {
-  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
 }
 
 .social-links:active {
-  background-color: #a0c7e4;
-  box-shadow: none;
-  color: 2c5777;
+    background-color: #a0c7e4;
+    box-shadow: none;
+    color: 2c5777;
 }

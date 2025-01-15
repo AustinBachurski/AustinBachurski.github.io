@@ -67,3 +67,48 @@ function toggleMenu() {
     navMenu.classList.toggle('hidden');
 }
 
+const blogsJson = "./blogs.json";
+
+// Load the landing page with the blog list
+function loadLandingPage() {
+  fetch(blogsJson)
+    .then((response) => response.json())
+    .then((blogs) => {
+      const content = document.querySelector("#blog");
+      content.innerHTML = `<h1>Learning Blogs</h1><ul>`;
+      blogs.forEach((blog) => {
+        content.innerHTML += `<li><a href="#" onclick="loadBlog('${blog.file}'); return false;">${blog.title}</a></li>`;
+      });
+      content.innerHTML += `</ul>`;
+    });
+}
+
+// Load a specific blog
+function loadBlog(blogFile) {
+  fetch(blogFile)
+    .then((response) => response.text())
+    .then((content) => {
+      document.querySelector("#blog").innerHTML = content;
+      history.pushState({ blog: blogFile }, "", `?blog=${blogFile}`);
+    });
+}
+
+// Handle browser navigation (back/forward)
+window.addEventListener("popstate", (event) => {
+  if (event.state && event.state.blog) {
+    loadBlog(event.state.blog);
+  } else {
+    loadLandingPage();
+  }
+});
+
+// Initialize the page based on the current URL
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const blog = urlParams.get("blog");
+  if (blog) {
+    loadBlog(blog);
+  } else {
+    loadLandingPage();
+  }
+});

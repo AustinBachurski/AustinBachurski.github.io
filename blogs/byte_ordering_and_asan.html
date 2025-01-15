@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Address Sanitizer is Not Infallible</h1>
+        <h3>An interesting experience where byte ordering mattered.</h3>
+        <p>
+            Today, as I do some contract work for an education company, I'm checking some C code for errors and making sure everything works properly.  Majority of my testing had simply been compiling with a decent set of warnings as errors along with address sanitizer enabled.  Today, the code ran fine, no issues with address sanitizer, so I compare the output of my test program with the expected output that's displayed in the education material.  
+        </p>
+
+<pre><code class="language-bash">
+<strong>Expected</strong>                                      
+Organization: E-Learning Providers
+Employee ID: 101
+Employee Name: Richard
+Start Date: 15/07/2024
+
+
+<strong>Actual</strong>
+Organization: E-Learning Providerse
+Employee ID: 101
+Employee Name: Richard
+Start Date: 15/07/2024
+</code></pre>
+
+        <p>
+            Ugh, another typo, let me go fix it...
+        </p>
+
+<pre><code class="language-c">
+#include &ltstdio.h&gt
+#include &ltstring.h&gt
+
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+struct Employee {
+    int id;
+    char name[20];
+    struct Date start_date;
+};
+
+struct Organization {
+    char organization_name[20];
+    struct Employee emp;
+};
+
+int main(void) {
+    struct Organization org;
+
+    strcpy(org.organization_name, "E-Learning Providers");
+
+    org.emp.id = 101;
+    strcpy(org.emp.name, "Richard");
+    org.emp.start_date.day = 15;
+    org.emp.start_date.month = 7;
+    org.emp.start_date.year = 2024;
+
+    printf("Organization: %s\n", org.organization_name);
+    printf("Employee ID: %d\n", org.emp.id);
+    printf("Employee Name: %s\n", org.emp.name);
+    printf("Start Date: %02d/%02d/%d\n", org.emp.start_date.day, org.emp.start_date.month, org.emp.start_date.year);
+
+    return 0;
+}
+</code></pre>
+
+        <p>
+            Hmm, no typo...  Ok so it's pretty easy to see that <code>strlen()</code> of "E-Learning Providers" is 20, and the <code>organization_name</code> buffer is size 20 - so it's overflowing the buffer with the null terminator.  But why are we getting this extra <code>e</code> on the end?  Thinking about the way this is laid out in memory, it should be like this.
+        </p> 
+
+<pre><code>
+                    Orgaization Struct
++--------------------------------------------------------+
+|   organization_name  |         Employee Struct         |
+| +--------------------|---------------------------------|
+| |                    | id      | name     | start_date |
+| |     20 bytes       |---------------------------------|
+| |                    | 4 bytes | 20 bytes | 12 bytes   |
++--------------------------------------------------------+
+</pre></code>
+
+        <p>
+            And considering the order in which these values are initialized: <code>"E-Learning Providers"</code> is written into <code>organization_name</code>, overflowing into the <code>id</code> field of the <code>Employee</code> struct.  But immediately thereafter, the <code>Employee</code> fields are written, which gets rid of the null terminator.  And we can see that the <code>id</code> field is being written with the integer value <code>101</code>, which is <code>e</code> in ASCII.  But that should be represented as 
+        </p>
+
+        <code>00000000 00000000 00000000 01100101</code>
+
+        <p>so wouldn't <code>printf()</code> just hit the zero bytes before <code>101</code> and terminate there?  Why are we printing this extra <code>e</code>?
+        </p>
+
+        <p>
+            I thought about this for a while and just couldn't wrap my head around it, so I started typing everything out to ask a mentor why this was happening.  And as I was typing it out, it occurred to me - BYTE ORDERING!  This system is little endian, so <code>101</code> is actually represented as
+        </p>
+
+        <code>01100101 00000000 00000000 00000000</code>
+
+        <p>
+            So <code>printf("Organization: %s\n", org.organization_name);</code> reads through the 20 bytes of the buffer, reads the <code>e</code> part of the <code>101</code>, then bumps into the next null byte, prints, and returns. This was the first time I've run into a real-world scenario of byte ordering mattering and I was so stoked that I figured this out, so I had to share.
+        </p>
+
+        <p>
+            But why didn't address sanitizer catch this?  Isn't a buffer overflow the exact kind of thing it's supposed to catch?  I had to know what was going on here, after some searching I came across an awesome explanation on YouTube from a channel by the name of <a href="https://www.youtube.com/@BinaryAdventure">BinaryAdventure</a>.  Link to the video <a href="https://www.youtube.com/watch?v=Tl1uZ7FBwFQ">here</a>.  Which also links to the paper that describes <a href="https://www.usenix.org/system/files/conference/atc12/atc12-final39.pdf">how address sanitizer works</a>.
+        </p>
+
+        <p>
+            The video was fantastic, and the paper was a good read.  But address sanitizer can't catch this problem because it's only allocating it's <i>shadow memory</i> <strong>around</strong> our allocations, not in the middle of them.  So for a nested struct like this, there's no way to catch that.  Unless you were to overflow so bad that you wrote out of the bounds of the parent struct.  While this makes perfect sense, it did poke a bit of a hole in what I thought was an infallible safety net.  I'm still going to be compiling with address sanitizer enabled in all my debug builds, but it's good to know that it can't <i>see into</i> certain scenarios.
+        </p>
+
+    </body>
+</html>
+
