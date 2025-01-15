@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Optimal String Mutation in Rust</h1>
+        <h3>Strings in Rust are handled differently than in C++, and fun times with optimization.</h3>
+
+        <p>
+            Had some fun with day 6 of <a href="https://adventofcode.com/">Advent of Code</a> (part 2) learning some Rust and benching it against C++ this morning and felt the need to tell someone about it.
+        </p>
+
+        <p>
+            A little bit of info about the puzzle, you're given a "map" (a text file), the carrot <code>^</code> is a "guard" patrolling the map.  You're trying to evade the guard, so you need to figure out where they'll be.  The guard moves in a straight line until it bumps into an obstacle, represented as <code>#`</code>, and then turns right.  This continues until the guard exits the map.  Here's the example provided:
+        </p>
+
+<pre><code>
+....#.....
+.........#
+..........
+..#.......
+.......#..
+..........
+.#..^.....
+........#.
+#.........
+......#...
+
+</pre></code>
+
+        <p>
+            The final question being `How many distinct positions will the guard visit before leaving the mapped area?`, with the "solution" path marked as <code>X</code> on the map:
+        </p>
+
+<pre><code>
+....#.....
+....XXXXX#
+....X...X.
+..#.X...X.
+..XXXXX#X.
+..X.X.X.X.
+.#XXXXXXX.
+.XXXXXXX#.
+#XXXXXXX..
+......#X..
+
+</pre></code>
+
+        <p>
+The solution for the example is 41.
+        </p>
+
+        <p>
+            Simple enough right?  So I get that part done and move on to part 2 of the exercise.  The goal is to get the guard stuck in an infinite loop by placing a single obstacle somewhere on their path.  The example places an obstacle <code>O</code> just to the left of the guard's starting location:
+        </p>
+
+<pre><code>
+....#.....
+....+---+#
+....|...|.
+..#.|...|.
+....|..#|.
+....|...|.
+.#.O^---+.
+........#.
+#.........
+......#...
+            
+</pre></code>
+
+        <p>
+Figure out how many possibilities there are in total that would make the guard run in circles.  The example input has 41 possible places you could stick an object, 6 of which lead to them getting stuck.
+        </p>
+
+        <p>
+The catch?  The example input is 10x10 characters, the actual puzzle input is 130x130, and my previous solution came up with more than 4,500 distinct tiles the guard will visit... I have no doubt there's some fancy algorithm that could figure this out super quick and easy.  I thought about it for a while, but I'm far too stupid to come up with something.  
+        </p>
+
+        <p>
+            Brute force time!  We'll do the same thing as in part 1, getting all the tiles the guard has visited, then we'll loop over each one, placing an obstacle at the location and running the pathing test again.  Wasn't sure what the best way to track an infinite loop was, but figured that if the guard moves 10,000 times that's probably close enough.  The loop will exit early if it's not infinite, so it's not quite as bad as it looks, but worst case we're talking about roughly 4,500,000 iterations of this test.  Ok so this is going to be slow as hell, but it's a great candidate for concurrency.  So referencing the Rust documentation I get it figured out how to spawn threads and put the counter behind a mutex.  
+        </p>
+
+<pre><code>
+for space in spaces {
+    let obstacles = Arc::clone(&obstacles);
+    let mut board = input.clone();
+
+    threads.push(thread::spawn( move || {
+
+        let mut path = Pathing::new(find_guard(&board), board.find('\n').unwrap() + 1);
+
+        board.replace_range(space..=space, "#");
+
+        let mut steps: usize = 0;
+        const MAX_STEPS:usize = 5000;
+
+        loop {
+            path.next();
+
+            match board.chars().nth(path.position as usize) {
+                Some('#') => path.turn(),
+                Some('\r') => break,
+                None => break,
+                _ => continue,
+            }
+            steps += 1;
+
+            if steps == MAX_STEPS {
+                let mut count = obstacles.lock().unwrap();
+                *count += 1;
+                break;
+            }
+        }
+    }));
+}
+
+for each in threads {
+    let _ = each.join().unwrap();
+}
+
+let count = obstacles.lock().unwrap();
+println!("Final Answer: {}", count);
+
+</pre></code>
+
+        <p>
+            Probably going to be horribly slow but lets try running it - <code>52.67 seconds</code>, ouch...  Got the correct answer though!  
+        </p>
+
+        <p>
+            As I've been working through AoC this year I've been bouncing back and forth between Rust and C++ to compare and contrast the two languages, and partially for some mental relief as C++ is my comfort zone.  So I decided to implement a similar solution in C++ to see how that felt and to see what the speed difference was like.  Got it all put together and hit run - correct answer, and only <code>1,259ms</code>!
+        </p>
+
+        <p>
+            Ok something is straight up wrong with my Rust code.  Not knowing anyone who could help me review it, I leaned on Chat GPT for a code review to help me figure out what I was doing wrong.  I provided it with the code for both solutions, and the first thing it picked up on was that I was spawning threads manually in Rust while in C++ I was using a parallel execution policy with a for_each loop.  Chat GPT posited that better handling of threads in C++ could be the cause of the discrepancy.  Skeptical of this, but curious, I had it modify my existing code to use a concurrency crate called Rayon, ran that code and - <code>67.76 seconds</code>...  Well that's even worse, next it tried to tell me that the mutex was to blame and that I should use an atomic for the counter variable.  This did reduce the current solution to <code>55.04 seconds</code>, but still nowhere close to the C++ version.  </p>
+
+        <p>
+            At this point it's clearly not a concurrency issue, there's got to be something I'm doing horribly wrong in the concurrent block.  After some coaxing, GPT suggested that my string manipulation was bad.  Rust is a bit weird here compared to C++, I'm used to being able to access any character in a string with the subscript operator - <code>myString[0] == 'H'</code> - but in Rust, it won't let you do this.  The reason is that in Rust, all strings are UTF-8 encoded, so rather than being 1 byte per character, it could be up to 4.  Since UTF-8 is variable length, there's no telling what the subscript operator would return for any given character.  So I'd been using <code>myString.chars().nth()</code> to read a character from the string, and <code>myString.replace_range()</code> to replace said character when the guard had visited the tile.  I thought that since I was replacing a single character that this would be an in place operation, but apparently there's likely to be reallocation involved.  Still not 100% sure if it's copy on write or what's going on there, but regardless, in Rust, if you want to mutate a single character, you can simply load the string into a <code>Vec&ltchar&gt</code>, and this will allocate 4 bytes per character and allow you to access and mutate each character with the subscript operator.
+        </p>
+
+<pre><code>
+let mut board: Vec&ltchar&gt = input.chars().collect();
+
+</pre></code>
+
+        <p>
+            So I made that change and gave it a run - <code>460.88ms</code>!  Holy cow, what a reduction!!!  52 seconds to less than half a second, that's unreal.  But I got to thinking, I know for certain that the input is all ASCII, so I only need 1 byte per character. A <code>Vec</code> in Rust is just like <code>std::vector</code> C++ where the elements are stored on the heap, so larger elements are more expensive, for strings that are known to be 100% ASCII a <code>Vec&ltu8&gt</code> (vector of bytes) can be used to hold the string, reducing the size of each element by 75%.
+        </p>
+
+<pre><code>
+let mut board: Vec&ltu8&gt = input.into_bytes();
+
+</pre></code>
+
+        <p>
+            This resulted in another decrease in run time down to <code>281.25ms</code>, awesome!  
+        </p>
+
+        <p>
+            The only downside to this, now my Rust code is 6x faster than my precious C++.  This cannot stand!  So I set to work refactoring the C++ solution.  Rather than reading the input as a vector of strings line by line, I read the input as one large string.  Changed my subscript access from a "row/column" pattern to simply calculating the index into the string.  Cleaned up a couple other things and let's see what happens.
+        </p>
+
+<pre><code>
+{
+    Timer t;
+    std::for_each(std::execution::par, traversed.begin(), traversed.end(), [&](const size_t index)
+        {
+            size_t steps = 0;
+            std::string board{ input };
+
+            board[index] = '#';
+
+            Pathing path{ guard, line_length };
+
+            while (true)
+            {
+                path.next();
+
+                if (path.m_pos &lt 0 || path.m_pos &gt= board.size())
+                {
+                    break;
+                }
+
+                if (board[path.m_pos] == '#')
+                {
+                    path.turn();
+                }
+                else if (board[path.m_pos] == '\n')
+                {
+                    break;
+                }
+
+                ++steps;
+
+                if (steps == max_steps)
+                {
+                    std::lock_guard&ltstd::mutex&gt guard(mutex);
+                    ++obstacles;
+                    break;
+                }
+            }
+        });
+}
+
+std::println("{}", obstacles);
+
+</pre></code>
+
+        <p>
+            <code>24ms</code> - get wrecked!
+        </p>
+        <p>
+            Ok now that was fun!  I have no doubt that there's still inefficiencies in my Rust code, and probably the C++ code too - lets be honest, lol.  I would theorize that the two languages should generate all but the same instructions considering like for like work since, as far as I'm aware, they're both using LLVM.  Curiously, I tried changing from unchecked subscript operators in C++ to the bounds checked <code>.at()</code> operator for element access, and I noticed literally zero change.  Granted I'm not running this in a proper benchmark, just printing a time to the console after timing the concurrent section, but if anything it almost seemed like it was ever so slightly faster with <code>.at()</code>.  Probably just run to run variance, but it was still an interesting observation.  
+        </p>
+
+        <p>
+I think I'm satisfied with this at the moment, I would still like to get the Rust code down closer to my C++ time, but for now I'm going to move on to the next AoC puzzle.  Maybe revisit it after this is all said and done and I learn a bit more about Rust, but for now, this was super fun and I learned a lot.
+        </p>
+
+    </body>
+</html>
+
