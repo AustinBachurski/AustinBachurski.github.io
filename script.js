@@ -24,16 +24,25 @@ document.addEventListener('DOMContentLoaded', function () {
                         otherCheckbox.checked = false;
                     }
                 });
+            }
 
+            const boxes = Array.from(checkboxes);
+
+            if (boxes.every(item => item.checked == false)) {
+                welcome = document.getElementById('welcome');
+                welcome.style.display = 'block';
             }
         });
     });
 
-    const initialCheckbox = document.querySelector('input[name="skills"]');
-    initialCheckbox.checked = true;
-    initialCheckbox.dispatchEvent(new Event('change'));
+    contentSections.forEach(section => {
+        if (section.id == 'welcome') {
+            section.style.display = 'block';
+        } else {
+            section.style.display = 'none';
+        }
+    });
 
-    /* Set initial text of "swap-colors" button. */
     const style = document.documentElement.style;
     const darkMode = style.getPropertyValue( "--dark-base");
     const currentMode = style.getPropertyValue(
@@ -69,7 +78,6 @@ function toggleMenu() {
 
 const blogsJson = "./blogs.json";
 
-// Load the landing page with the blog list
 function loadLandingPage() {
   fetch(blogsJson)
     .then((response) => response.json())
@@ -83,7 +91,6 @@ function loadLandingPage() {
     });
 }
 
-// Load a specific blog
 function loadBlog(blogFile) {
   fetch(blogFile)
     .then((response) => response.text())
@@ -93,7 +100,6 @@ function loadBlog(blogFile) {
     });
 }
 
-// Handle browser navigation (back/forward)
 window.addEventListener("popstate", (event) => {
   if (event.state && event.state.blog) {
     loadBlog(event.state.blog);
@@ -102,7 +108,6 @@ window.addEventListener("popstate", (event) => {
   }
 });
 
-// Initialize the page based on the current URL
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const blog = urlParams.get("blog");
@@ -112,3 +117,4 @@ document.addEventListener("DOMContentLoaded", () => {
     loadLandingPage();
   }
 });
+
