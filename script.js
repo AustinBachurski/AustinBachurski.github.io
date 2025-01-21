@@ -79,42 +79,52 @@ function toggleMenu() {
 const blogsJson = "./blogs.json";
 
 function loadLandingPage() {
-  fetch(blogsJson)
-    .then((response) => response.json())
-    .then((blogs) => {
-      const content = document.querySelector("#blog");
-      content.innerHTML = `<h1>Learning Blogs</h1><ul>`;
-      blogs.forEach((blog) => {
-        content.innerHTML += `<li><a href="#" onclick="loadBlog('${blog.file}'); return false;">${blog.title}</a></li>`;
-      });
-      content.innerHTML += `</ul>`;
-    });
+    fetch(blogsJson)
+        .then((response) => response.json())
+        .then((blogs) => {
+            const content = document.querySelector("#blog");
+            content.innerHTML = `<h1>Learning Blogs</h1><ul>`;
+            blogs.forEach((blog) => {
+                content.innerHTML += `<li><a href="#" onclick="loadBlog('${blog.file}'); return false;">${blog.title}</a></li>`;
+            });
+            content.innerHTML += `</ul>`;
+        });
 }
 
 function loadBlog(blogFile) {
-  fetch(blogFile)
-    .then((response) => response.text())
-    .then((content) => {
-      document.querySelector("#blog").innerHTML = content;
-      history.pushState({ blog: blogFile }, "", `?blog=${blogFile}`);
-    });
+    fetch(blogFile)
+        .then((response) => response.text())
+        .then((content) => {
+            document.querySelector("#blog").innerHTML = content;
+            history.pushState({ blog: blogFile }, "", `?blog=${blogFile}`);
+
+            const backButton = document.getElementById("back-to-blogs");
+            if (backButton) {
+                backButton.addEventListener("click", () => {
+                    loadLandingPage();
+                    history.pushState({}, "", "?");
+                });
+            }
+        });
+
 }
 
 window.addEventListener("popstate", (event) => {
-  if (event.state && event.state.blog) {
-    loadBlog(event.state.blog);
-  } else {
-    loadLandingPage();
-  }
+    if (event.state && event.state.blog) {
+        loadBlog(event.state.blog);
+    } else {
+        loadLandingPage();
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const blog = urlParams.get("blog");
-  if (blog) {
-    loadBlog(blog);
-  } else {
-    loadLandingPage();
-  }
+    const urlParams = new URLSearchParams(window.location.search);
+    const blog = urlParams.get("blog");
+
+    if (blog) {
+        loadBlog(blog);
+    } else {
+        loadLandingPage();
+    }
 });
 
