@@ -67,6 +67,12 @@ body {
     color: var(--text-color);
 }
 
+#welcome img {
+    padding-right: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
 .navbar {
     display: flex;
     max-width: 200px;
@@ -120,7 +126,7 @@ nav a:hover {
     }
 
     .project-content img {
-        max-width: 95%;
+        max-width: 100%;
         height: auto;
     }
 }
@@ -405,7 +411,7 @@ nav a:hover {
 
 .project-content img {
     padding-right: 10px;
-    max-width: 95%;
+    max-width: 100%;
     height: auto;
 }
 
