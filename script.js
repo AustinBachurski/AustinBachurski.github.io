@@ -1,130 +1,120 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const checkboxes = document.querySelectorAll('.buttons input');
-    const contentSections = document.querySelectorAll('.content-section');
-    const navMenu = document.getElementById('navMenu');
+const tuiTextInput          = document.querySelector("#hidden-terminal-input");
+const tuiTextDisplay        = document.querySelector("#tui-input-display");
+const tuiCwdDisplay         = document.querySelector("#tui-input-cwd");
+const tuiTextAfterCursor    = document.querySelector("#tui-input-after-cursor");
+const tuiInputCursor        = document.querySelector("#tui-input-cursor");
+const tuiContent            = document.querySelector("#tui-content");
 
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-            const correspondingSection = document.getElementById(this.name);
+let generatingOutput = false;
+let cursorPosition = 0;
 
-            if (correspondingSection) {
-                contentSections.forEach(section => {
-                    section.style.display = 'none';
-                });
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-                if (this.checked) {
-                    correspondingSection.style.display = 'block';
-                    navMenu.classList.value = 'hidden';
-                } else {
-                    correspondingSection.style.display = 'none';
-                }
+// Re-focus the hidden input on any click in the terminal
+document.addEventListener('click', () => tuiTextInput.focus());
 
-                checkboxes.forEach(otherCheckbox => {
-                    if (otherCheckbox !== this) {
-                        otherCheckbox.checked = false;
-                    }
-                });
-            }
+tuiTextInput.addEventListener('keydown', e => {
+    switch (e.key) {
+        case 'Enter':
+            e.preventDefault();
+            const text = tuiTextInput.value.trim();
+            tuiTextInput.value = '';
+            cursorPosition = 0;
+            syncCursorDisplay();
+            if (text) { handleCommand(text); }
+            break;
 
-            const boxes = Array.from(checkboxes);
+        case 'c':
+        case 'C':
+            if (!e.ctrlKey) { break; }
+            e.preventDefault();
+            tuiTextInput.value = '';
+            cursorPosition = 0;
+            syncCursorDisplay();
+            handleCommand("^C");
+            break;
 
-            if (boxes.every(item => item.checked == false)) {
-                welcome = document.getElementById('welcome');
-                welcome.style.display = 'block';
-            }
-        });
-    });
+        case 'ArrowLeft':
+            e.preventDefault();
+            moveCursorTo(cursorPosition - 1);
+            break;
 
-    contentSections.forEach(section => {
-        if (section.id == 'welcome') {
-            section.style.display = 'block';
-        } else {
-            section.style.display = 'none';
-        }
-    });
+        case 'ArrowRight':
+            e.preventDefault();
+            moveCursorTo(cursorPosition + 1);
+            break;
 
-    const style = document.documentElement.style;
-    const darkMode = style.getPropertyValue( "--dark-base");
-    const currentMode = style.getPropertyValue(
-        "--base-background-color");
-    const button = document.getElementById("swap-colors");
+        case 'Home':
+            e.preventDefault();
+            moveCursorTo(0);
+            break;
 
-    if (currentMode == darkMode) {
-        button.innerText = "Toggle Light Mode";
-    } else {
-        button.innerText = "Toggle Dark Mode";
+        case 'End':
+            e.preventDefault();
+            moveCursorTo(tuiTextInput.length);
+            break;
     }
 });
 
-
-function swapColors() {
-    const button = document.getElementById("swap-colors");
-    const colors = document.body.classList;
-
-    if (button.innerText == "Toggle Light Mode") {
-        colors.remove("dark-mode");
-        colors.add("light-mode");
-        button.innerText = "Toggle Dark Mode";
-    } else {
-        colors.remove("light-mode");
-        colors.add("dark-mode");
-        button.innerText = "Toggle Light Mode";
-    }
-}
-
-function toggleMenu() {
-    navMenu.classList.toggle('hidden');
-}
-
-const blogsJson = "./blogs.json";
-
-function loadLandingPage() {
-    fetch(blogsJson)
-        .then((response) => response.json())
-        .then((blogs) => {
-            const content = document.querySelector("#blog");
-            content.innerHTML = `<h1>Learning Blogs</h1><ul>`;
-            blogs.forEach((blog) => {
-                content.innerHTML += `<li><a href="#" onclick="loadBlog('${blog.file}'); return false;">${blog.title}</a></li>`;
-            });
-            content.innerHTML += `</ul>`;
-        });
-}
-
-function loadBlog(blogFile) {
-    fetch(blogFile)
-        .then((response) => response.text())
-        .then((content) => {
-            document.querySelector("#blog").innerHTML = content;
-            history.pushState({ blog: blogFile }, "", `?blog=${blogFile}`);
-
-            const backButton = document.getElementById("back-to-blogs");
-            if (backButton) {
-                backButton.addEventListener("click", () => {
-                    loadLandingPage();
-                    history.pushState({}, "", "?");
-                });
-            }
-        });
-
-}
-
-window.addEventListener("popstate", (event) => {
-    if (event.state && event.state.blog) {
-        loadBlog(event.state.blog);
-    } else {
-        loadLandingPage();
-    }
+tuiTextInput.addEventListener('input', () => {
+    cursorPosition = tuiTextInput.selectionStart ?? tuiTextInput.value.length;
+    syncCursorDisplay();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const blog = urlParams.get("blog");
 
-    if (blog) {
-        loadBlog(blog);
-    } else {
-        loadLandingPage();
+tuiTextInput.focus();
+
+function syncCursorDisplay() {
+    const text = tuiTextInput.value;
+    tuiTextDisplay.textContent  = text.slice(0, cursorPosition);
+    tuiTextAfterCursor.textContent = text.slice(cursorPosition);
+}
+
+function moveCursorTo(target) {
+    cursorPosition = Math.max(0, Math.min(target, tuiTextInput.value.length));
+    tuiTextInput.setSelectionRange(cursorPosition, cursorPosition);
+    syncCursorDisplay();
+}
+
+function scrollToBottom() {
+    tuiContent.scrollTop = tuiContent.scrollHeight;
+}
+
+async function handleCommand(command) {
+    if (command == "clear") {
+        tuiContent.innerHTML = '';
+        return;
     }
-});
+
+}
+
+function createLineElement() {
+    const div = document.createElement("div");
+    return div;
+}
+
+async function teletypeLine(item) {
+    const element = createLineElement(item.type);
+    tuiContent.appendChild(element);
+
+    if (!item) {
+        scrollToBottom();
+        return;
+    }
+
+    if (item === 'html') {
+        el.innerHTML = item.html;
+        scrollToBottom();
+        await sleep(CONFIG.lineDelay);
+        return;
+    }
+
+    for (let c of item) {
+        element.textContent += c;
+        scrollToBottom();
+        await sleep(7);
+    }
+
+    await sleep(100);
+}
 
