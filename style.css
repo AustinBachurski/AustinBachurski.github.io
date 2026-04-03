@@ -1,7 +1,7 @@
 :root {
-    --default-font: 'Geist Mono', monospace;
-    --default-font-size: 14px;
-    --text-cursor-width: 9px;
+    --default-font:         'Geist Mono', monospace;
+    --default-font-size:    14px;
+    --text-cursor-width:    9px;
 
     --color-background:     #080c08;
     --color-surface:        #0a0e0a;
@@ -12,14 +12,9 @@
     --color-green:          #3daa3d;
     --color-bright-green:   #57f857;
 
-    --glow-dim:     0 0 4px rgba(87, 248, 87, 0.25);
-    --glow-text:    0 0 7px rgba(87, 248, 87, 0.5);
-    --glow-bright:  0 0 10px rgba(87, 248, 87, 0.85), 0 0 22px rgba(87, 248, 87, 0.35);
-
-    /* Unused? */
-    --line-height:      1.75;
-    --sidebar-width:    220px;
-    --panel-padding:    8px 10px;
+    --glow-dim:             0 0 4px rgba(87, 248, 87, 0.25);
+    --glow-text:            0 0 7px rgba(87, 248, 87, 0.5);
+    --glow-bright:          0 0 10px rgba(87, 248, 87, 0.85), 0 0 22px rgba(87, 248, 87, 0.35);
 }
 
 *, *::before, *::after {
@@ -38,6 +33,19 @@ html, body {
     overflow: hidden;
 }
 
+#tui-content {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-dim-green) transparent;
+}
+#tui-content::-webkit-scrollbar { width: 4px; }
+#tui-content::-webkit-scrollbar-track { background: transparent; }
+#tui-content::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 2px; }
+
 #scanline-overlay {
     position: fixed;
     inset: 0;
@@ -52,11 +60,14 @@ html, body {
     z-index: 200;
 }
 
-#tui-border {/* Use svh/svw to ensure it fits even with mobile address bars */
+#tui-border {
     width: calc(100svw - 2rem); 
     height: calc(100svh - 2rem);
-    box-sizing: border-box; /* Crucial: includes border in width/height */
-    border: .2rem, solid, var(--color-bright-green);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: .2rem solid var(--color-bright-green);
     padding: 1rem;
     margin: 1rem; 
 }
@@ -64,14 +75,19 @@ html, body {
 /* Terminal Input */
 
 #tui-input-container {
-    flex: 1;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    align-content: center;
+    overflow: hidden;
+}
+
+#tui-input-line {
     display: flex;
     align-items: center;
-    font-size: 0;
     color: var(--color-bright-green);
     text-shadow: var(--glow-bright);
-    overflow: hidden;
-    cursor: text;
+    cursor: default;
     white-space: pre;
 }
 
@@ -107,10 +123,10 @@ html, body {
     background: var(--color-bright-green);
     box-shadow: var(--glow-bright);
     vertical-align: text-bottom;
-    flex-shrink: 0;
     animation: blink 1s step-end infinite;
     margin-right: calc(var(--text-cursor-width) * -1);
     position: relative;
+    left: -.25px;
     mix-blend-mode: difference;
     z-index: 1;
 }

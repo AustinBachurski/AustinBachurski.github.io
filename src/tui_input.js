@@ -4,6 +4,7 @@ let tuiCwdDisplay;
 let tuiTextAfterCursor;
 let tuiContent;
 let generatingOutput = false;
+let lineQueue = [];
 let cursorPosition = 0;
 
 export function initializeTuiInput() {
@@ -39,12 +40,19 @@ function scrollToBottom() {
 }
 
 async function handleCommand(command) {
-    if (command == "clear") {
-        tuiContent.innerHTML = '';
-        return;
-    }
+    switch (command) {
+        case "clear":
+            tuiContent.innerHTML = '';
+            break;
 
-    await teletypeLine("Testing testing testing.");
+        case "help":
+            await pushContent("TODO: Display some help text.");
+            break;
+
+        default:
+            await pushContent(command.split(' ')[0] + ": command not found");
+            break;
+    }
 }
 
 function createLineElement() {
@@ -75,6 +83,21 @@ async function teletypeLine(item) {
     }
 
     await sleep(100);
+}
+
+async function pushContent(content) {
+    lineQueue.push(content);
+
+    if (generatingOutput) { return; }
+
+    generatingOutput = true;
+
+    while (lineQueue.length > 0) {
+        const currentLine = lineQueue.shift();
+        await teletypeLine(currentLine);
+    }
+
+    generatingOutput = false;
 }
 
 function onInputChanged() {
