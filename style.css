@@ -2,15 +2,16 @@
     --default-font:         'Geist Mono', monospace;
     --default-font-size:    14px;
     --text-cursor-width:    9px;
+    --line-height: 1rem;
 
-    --color-background:     #080c08;
-    --color-surface:        #0a0e0a;
-    --color-border-color:   #1e3a1e;
+    --background-color:     #080c08;
+    --surface-color:        #0a0e0a;
+    --border-color:   #1e3a1e;
 
     --color-amber:          #e8a820;
-    --color-dim-green:      #2a5c2a;
+    --color-green-dim:      #2a5c2a;
     --color-green:          #3daa3d;
-    --color-bright-green:   #57f857;
+    --color-green-bright:   #57f857;
 
     --glow-dim:             0 0 4px rgba(87, 248, 87, 0.25);
     --glow-text:            0 0 7px rgba(87, 248, 87, 0.5);
@@ -25,7 +26,7 @@
 
 html, body {
     height: 100%;
-    background: var(--color-background);
+    background: var(--background-color);
     color: var(--color-green);
     font-family: var(--default-font);
     font-size: var(--default-font-size);
@@ -37,14 +38,40 @@ html, body {
     flex: 0 1 auto;
     display: flex;
     flex-direction: column;
+    white-space: pre-wrap;
+    word-break: break-word;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
-    scrollbar-color: var(--color-dim-green) transparent;
+    scrollbar-color: var(--color-green-dim) transparent;
 }
 #tui-content::-webkit-scrollbar { width: 4px; }
 #tui-content::-webkit-scrollbar-track { background: transparent; }
 #tui-content::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 2px; }
+
+.dim-text {
+    color: var(--color-green-dim);
+    text-shadow: var(--glow-dim);
+}
+
+.normal-text {
+    color: var(--color-green);
+    text-shadow: var(--glow-text);
+}
+
+.bright-text {
+    color: var(--color-green-bright);
+    text-shadow: var(--glow-bright);
+}
+
+.bright-green {
+    color: var(--color-green-bright);
+    text-shadow: var(--glow-bright);
+}
+
+.empty-div {
+    min-height: var(--line-height);
+}
 
 #scanline-overlay {
     position: fixed;
@@ -67,7 +94,7 @@ html, body {
     flex-direction: column;
     box-sizing: border-box;
     overflow: hidden;
-    border: .2rem solid var(--color-bright-green);
+    border: .2rem solid var(--color-green-bright);
     padding: 1rem;
     margin: 1rem; 
 }
@@ -85,7 +112,7 @@ html, body {
 #tui-input-line {
     display: flex;
     align-items: center;
-    color: var(--color-bright-green);
+    color: var(--color-green-bright);
     text-shadow: var(--glow-bright);
     cursor: default;
     white-space: pre;
@@ -120,7 +147,7 @@ html, body {
     display: inline-block;
     width: var(--text-cursor-width);
     height: 1rem;
-    background: var(--color-bright-green);
+    background: var(--color-green-bright);
     box-shadow: var(--glow-bright);
     vertical-align: text-bottom;
     animation: blink 1s step-end infinite;

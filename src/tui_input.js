@@ -1,3 +1,5 @@
+import { builtin, emptyDiv, htmlText, normalText } from "./shell_builtins.js";
+
 let tuiTextInput;
 let tuiTextDisplay;
 let tuiCwdDisplay;
@@ -39,6 +41,16 @@ function scrollToBottom() {
     tuiContent.scrollTop = tuiContent.scrollHeight;
 }
 
+async function displayHelpText() {
+    for (let line of builtin.help) {
+        await pushContent(line);
+    }
+}
+
+function generateCommandNotFoundLine(command) {
+    return { style: normalText, text: command.split(' ')[0] + ": command not found" };
+}
+
 async function handleCommand(command) {
     switch (command) {
         case "clear":
@@ -46,37 +58,55 @@ async function handleCommand(command) {
             break;
 
         case "help":
-            await pushContent("TODO: Display some help text.");
+            displayHelpText();
             break;
 
+        case "cd":
+        break;
+
+        case "ls":
+        break;
+
+        case "cat":
+        break;
+
+        case "exit":
+        break;
+
         default:
-            await pushContent(command.split(' ')[0] + ": command not found");
+            await pushContent(generateCommandNotFoundLine(command));
             break;
     }
 }
 
-function createLineElement() {
+function createLineElement(style) {
     const div = document.createElement("div");
+    div.classList.add(style);
     return div;
 }
 
-async function teletypeLine(item) {
-    const element = createLineElement(item.type);
+async function teletypeLine(content) {
+    const element = createLineElement(content.style);
     tuiContent.appendChild(element);
 
-    if (!item) {
+    if (!content) {
         scrollToBottom();
         return;
     }
 
-    if (item === 'html') {
-        el.innerHTML = item.html;
+    if (content.style == emptyDiv) {
         scrollToBottom();
-        await sleep(CONFIG.lineDelay);
         return;
     }
 
-    for (let c of item) {
+    if (content.style == htmlText) {
+        element.innerHTML = content.text;
+        scrollToBottom();
+        await sleep(100);
+        return;
+    }
+
+    for (let c of content.text) {
         element.textContent += c;
         scrollToBottom();
         await sleep(7);
