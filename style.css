@@ -54,7 +54,12 @@ html, body {
     text-shadow: var(--glow-dim);
 }
 
-.normal-text {
+.amber-text {
+    color: var(--color-amber);
+    text-shadow: var(--glow-text);
+}
+
+.green-text {
     color: var(--color-green);
     text-shadow: var(--glow-text);
 }

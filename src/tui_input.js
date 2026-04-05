@@ -1,20 +1,24 @@
-import { builtin, emptyDiv, htmlText, normalText } from "./shell_builtins.js";
+import { builtin, emptyDiv, htmlText, amberText, greenText, brightText } from "./shell_builtins.js";
 
+let filesystem;
 let tuiTextInput;
 let tuiTextDisplay;
-let tuiCwdDisplay;
+let tuiCWD;
 let tuiTextAfterCursor;
 let tuiContent;
+let tuiUser;
 let generatingOutput = false;
 let lineQueue = [];
 let cursorPosition = 0;
 
-export function initializeTuiInput() {
-    tuiTextInput          = document.querySelector("#hidden-terminal-input");
-    tuiTextDisplay        = document.querySelector("#tui-input-display");
-    tuiCwdDisplay         = document.querySelector("#tui-input-cwd");
-    tuiTextAfterCursor    = document.querySelector("#tui-input-after-cursor");
-    tuiContent            = document.querySelector("#tui-content");
+export async function initializeTuiInput() {
+    filesystem          = await readFilesystem();
+    tuiTextInput        = document.querySelector("#hidden-terminal-input");
+    tuiTextDisplay      = document.querySelector("#tui-input-display");
+    tuiCWD              = document.querySelector("#tui-input-cwd");
+    tuiTextAfterCursor  = document.querySelector("#tui-input-after-cursor");
+    tuiContent          = document.querySelector("#tui-content");
+    tuiUser             = document.querySelector("#user-terminal");
 
     document.addEventListener('click', () => tuiTextInput.focus());
     tuiTextInput.addEventListener('keydown', onKeypress);
@@ -24,6 +28,12 @@ export function initializeTuiInput() {
 }
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+async function readFilesystem() {
+    const response = await fetch("./src/filesystem.json");
+    const data = await response.json();
+    return data;
+}
 
 function syncCursorDisplay() {
     const text = tuiTextInput.value;
@@ -47,31 +57,118 @@ async function displayHelpText() {
     }
 }
 
+function getCwdFromFilesystem() {
+    const path = tuiCWD.textContent.split('/');
+
+    let cwd = filesystem['/'];
+
+    for (let dir of path) {
+        cwd = cwd.entries[dir];
+    }
+
+    return cwd;
+}
+
+async function traverseFilesystem(target) {
+    const args = target.split('/');
+
+    let cwd = getCwdFromFilesystem();
+    let path = "";
+
+    for (let dir of args) {
+        dir = dir.trim();
+
+        if (dir == "..") {
+            // WORKING HERE.
+            const pathArray = tuiCWD.textContent.split('/');
+            pathArray.pop();
+            await traverseFilesystem(pathArray.join('/'));
+        }
+
+        if (!(dir in cwd.entries)) {
+            pushContent({
+                style: greenText,
+                text: "cd: " + path + dir + ": No such file or directory"
+            });
+            return;
+        }
+
+        if (cwd.entries[dir].type != "directory") {
+            pushContent({
+                style: greenText,
+                text: "cd: " + path + dir + ": Not a directory" });
+            return;
+        }
+
+        path += dir + '/';
+        cwd = cwd.entries[dir];
+    }
+
+
+    tuiCWD.textContent += '/' + path.substring(0, path.length - 1);
+}
+
+async function executeCD(command) {
+    let args = command.trim().split(' ');
+    args.shift();  // Remove `cd` from args.
+
+    if (args.length == 0) {
+        // Go to home directory.
+        tuiCWD.textContent = '~';
+        return;
+    }
+
+    if (args.length != 1) {
+        pushContent({
+            style: greenText,
+            text: "cd: too many arguments"
+        });
+        return;
+    }
+
+    traverseFilesystem(args[0]);
+}
+
+async function executeLS(command) {
+    //TODO: Handle arguments.
+
+    const cwd = getCwdFromFilesystem();
+
+    for (let entry of Object.keys(cwd.entries)) {
+        pushContent({
+            style: (entry.type == "file" ? amberText : greenText),
+            text: entry
+        });
+    }
+}
+
 function generateCommandNotFoundLine(command) {
-    return { style: normalText, text: command.split(' ')[0] + ": command not found" };
+    return { style: greenText, text: command.split(' ')[0] + ": command not found" };
 }
 
 async function handleCommand(command) {
-    switch (command) {
+    switch (command.split(' ')[0]) {
         case "clear":
             tuiContent.innerHTML = '';
             break;
 
         case "help":
-            displayHelpText();
+            await displayHelpText();
             break;
 
         case "cd":
-        break;
+            await executeCD(command);
+            break;
 
         case "ls":
-        break;
+            await executeLS(command);
+            break;
 
         case "cat":
-        break;
+            break;
 
         case "exit":
-        break;
+            break;
 
         default:
             await pushContent(generateCommandNotFoundLine(command));
@@ -135,10 +232,23 @@ function onInputChanged() {
     syncCursorDisplay();
 };
 
+function appendInputLineToContent(text) {
+    const content = tuiUser.textContent
+        + tuiCWD.textContent
+        + "$ "
+        + text;
+
+    pushContent({
+        style: htmlText,
+        text: '<span class="dim-text">' + content + '</span>'
+    });
+}
+
 function onKeypress(event) {
     switch (event.key) {
         case 'Enter':
             event.preventDefault();
+            appendInputLineToContent(tuiTextInput.value);
             const text = tuiTextInput.value.trim();
             tuiTextInput.value = '';
             cursorPosition = 0;
@@ -150,6 +260,7 @@ function onKeypress(event) {
         case 'C':
             if (!event.ctrlKey) { break; }
             event.preventDefault();
+            appendInputLineToContent(tuiTextInput.value);
             tuiTextInput.value = '';
             cursorPosition = 0;
             syncCursorDisplay();

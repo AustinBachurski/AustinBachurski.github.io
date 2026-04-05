@@ -1,1 +1,153 @@
-{"name":"content","type":"directory","children":[{"name":"about_me","type":"directory","children":[{"name":"Background","type":"file","content":""},{"name":"Education","type":"file","content":""},{"name":"Hobbies","type":"file","content":""}]},{"name":"links","type":"directory","children":[{"name":"E-mail","type":"file","content":""},{"name":"LinkedIn","type":"file","content":""},{"name":"Resume","type":"file","content":""}]},{"name":"projects","type":"directory","children":[{"name":"Advent of Code 2024","type":"file","content":"much smarts in this area\r\n"},{"name":"ArcGIS Portal Services Controller","type":"file","content":""},{"name":"Battleship Clone","type":"file","content":""},{"name":"Building Permit Parser","type":"file","content":""},{"name":"Crime Map Update Wizard","type":"file","content":""},{"name":"Five-Function Calculator","type":"file","content":""},{"name":"Law Enforcement Warrant Generator","type":"file","content":""},{"name":"Mailer Generator","type":"file","content":""},{"name":"STL Implementations","type":"file","content":"pretty dumbz in this area\r\n"},{"name":"Tetris","type":"file","content":""}]},{"name":"skills","type":"directory","children":[{"name":"C","type":"file","content":""},{"name":"C#","type":"file","content":""},{"name":"C++","type":"file","content":"much smarts in this area\r\n"},{"name":"CMake","type":"file","content":""},{"name":"HTML & CSS","type":"file","content":"pretty dumbz in this area\r\n"},{"name":"JavaScript","type":"file","content":""},{"name":"Python","type":"file","content":""},{"name":"SQL","type":"file","content":""},{"name":"x86 Assembly","type":"file","content":""}]},{"name":"work_history","type":"directory","children":[{"name":"Fleet Maintenance Supervisor","type":"file","content":""},{"name":"Fleet Mechanic","type":"file","content":""},{"name":"GIS Specialist","type":"file","content":""},{"name":"Software Test Engineer","type":"file","content":""}]}]}
+{
+    "/": {
+        "type": "directory",
+        "entries": {
+            "~": {
+                "type": "directory",
+                "entries": {
+                    "about_me": {
+                        "type": "directory",
+                        "entries": {
+                            "Background": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Education": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Hobbies": {
+                                "type": "file",
+                                "content": ""
+                            }
+                        }
+                    },
+                    "links": {
+                        "type": "directory",
+                        "entries": {
+                            "E-mail": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "LinkedIn": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Resume": {
+                                "type": "file",
+                                "content": ""
+                            }
+                        }
+                    },
+                    "projects": {
+                        "type": "directory",
+                        "entries": {
+                            "Advent of Code 2024": {
+                                "type": "file",
+                                "content": "much smarts in this area\n"
+                            },
+                            "ArcGIS Portal Services Controller": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Battleship Clone": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Building Permit Parser": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Crime Map Update Wizard": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Five-Function Calculator": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Law Enforcement Warrant Generator": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Mailer Generator": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "STL Implementations": {
+                                "type": "file",
+                                "content": "pretty dumbz in this area\n"
+                            },
+                            "Tetris": {
+                                "type": "file",
+                                "content": ""
+                            }
+                        }
+                    },
+                    "skills": {
+                        "type": "directory",
+                        "entries": {
+                            "C": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "C#": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "C++": {
+                                "type": "file",
+                                "content": "much smarts in this area\n"
+                            },
+                            "CMake": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "HTML & CSS": {
+                                "type": "file",
+                                "content": "pretty dumbz in this area\n"
+                            },
+                            "JavaScript": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Python": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "SQL": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "x86 Assembly": {
+                                "type": "file",
+                                "content": ""
+                            }
+                        }
+                    },
+                    "work_history": {
+                        "type": "directory",
+                        "entries": {
+                            "Fleet Maintenance Supervisor": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Fleet Mechanic": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "GIS Specialist": {
+                                "type": "file",
+                                "content": ""
+                            },
+                            "Software Test Engineer": {
+                                "type": "file",
+                                "content": ""
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
