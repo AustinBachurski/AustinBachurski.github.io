@@ -13,23 +13,23 @@
         <!-- Anchor for scanline CSS overlay. -->
         <div id="scanline-overlay" aria-hidden="true"></div>
 
-        <div id="tui-border">
+        <div id="terminal-border">
 
             <!-- Teletype Terminal -->
-            <div id="tui-content"> </div>
+            <div id="terminal-content"> </div>
 
             <!-- Terminal Input Display -->
-            <div id="tui-input-container">
-                <div id="tui-input-line">
-                    <span id="user-terminal" class="tui-input">guest@bachurskiterm:</span>
-                    <span id="tui-input-cwd" class="tui-input">~</span>
-                    <span class="tui-input">$ </span>
-                    <span id="tui-input-display" class="tui-input"></span>
-                    <span id="tui-input-cursor" class="tui-input"></span>
-                    <span id="tui-input-after-cursor" class="tui-input"></span>
+            <div id="terminal-input-container">
+                <div id="terminal-input-line">
+                    <span id="terminal-user" class="terminal-input">guest@bach-term:</span>
+                    <span id="terminal-cwd-display" class="terminal-input">~</span>
+                    <span class="terminal-input">$ </span>
+                    <span id="terminal-text-before-cursor" class="terminal-input"></span>
+                    <span id="terminal-cursor" class="terminal-input"></span>
+                    <span id="terminal-text-after-cursor" class="terminal-input"></span>
 
                     <!-- Text Input (hidden) -->
-                    <input id="hidden-terminal-input"
+                    <input id="hidden-terminal-input-element"
                         type="text"
                         autocomplete="off"
                         autocorrect="off"
