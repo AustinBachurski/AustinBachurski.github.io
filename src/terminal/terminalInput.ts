@@ -1,7 +1,6 @@
-import { DivStyle }                 from "./types/styles";
-import { TextContent }              from "./types/terminalContent";
-import { assertElementExists }      from "./utilities";
-import { handleTerminalCommand }    from "./commandHandler";
+import { DimGreenLine }             from "../formatting/terminalContent";
+import { assertElementExists }      from "../utilities/utilities";
+import { handleTerminalCommand }    from "../commands/commandHandler";
 import { pushContent }              from "./terminalWriter";
 
 
@@ -40,8 +39,7 @@ function moveCursorTo(target: number): void {
 }
 
 function appendInputLineToTerminalOutput(text: string): void {
-    pushContent(new TextContent(
-        DivStyle.greenTextDim,
+    pushContent(new DimGreenLine(
         `guest@bach-term:${displayedCWD.textContent}$ ${text}`
     ));
 }

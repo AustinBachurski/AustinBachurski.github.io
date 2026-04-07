@@ -1,20 +1,9 @@
-import type { TerminalContent }         from "./types/terminalContent";
-import { assertElementExists, sleep }   from "./utilities";
-import { DivStyle }                     from "./types/styles";
+import type { TerminalContent }         from "../formatting/terminalContent";
+import { DivStyle }                     from "../formatting/styles";
+import { assertElementExists, sleep }   from "../utilities/utilities";
 
 export function initializeTerminalWriter(): void {
     terminalOutput = assertElementExists<HTMLDivElement>("#terminal-content");
-}
-
-const charWriteDelay = 7;
-const lineWriteDelay = 100;
-
-let lineQueue:          TerminalContent[]   = [];
-let generatingOutput:   boolean             = false;
-let terminalOutput:     HTMLDivElement;
-
-function scrollToBottom(): void {
-    terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
 export async function pushContent(content: TerminalContent): Promise<void> {
@@ -34,6 +23,17 @@ export async function pushContent(content: TerminalContent): Promise<void> {
     generatingOutput = false;
 }
 
+export function clearTerminal(): void {
+    terminalOutput.innerHTML = "";
+}
+
+const charWriteDelay = 7;
+const lineWriteDelay = 100;
+
+let lineQueue:          TerminalContent[]   = [];
+let generatingOutput:   boolean             = false;
+let terminalOutput:     HTMLDivElement;
+
 function createLineElement(style: DivStyle): HTMLDivElement {
     const div = document.createElement("div");
     div.classList.add(style);
@@ -44,17 +44,13 @@ async function teletypeLine(content: TerminalContent): Promise<void> {
     const element = createLineElement(content.style);
     terminalOutput.appendChild(element);
 
-    if (!content) {
+    if (content.style == DivStyle.empty) {
         scrollToBottom();
+        sleep(lineWriteDelay);
         return;
     }
 
-    if (content.style == DivStyle.EMPTY) {
-        scrollToBottom();
-        return;
-    }
-
-    if (content.style == DivStyle.HTML) {
+    if (content.style == DivStyle.html) {
         element.innerHTML = content.text;
         scrollToBottom();
         sleep(lineWriteDelay);
@@ -68,5 +64,9 @@ async function teletypeLine(content: TerminalContent): Promise<void> {
     }
 
     sleep(lineWriteDelay);
+}
+
+function scrollToBottom(): void {
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 

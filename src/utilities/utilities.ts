@@ -2,7 +2,7 @@ export function assertElementExists<T extends Element>(selector: string): T {
     const element = document.querySelector<T>(selector);
 
     if (!element) {
-        throw new Error(`Selector "${selector}" was not found in the DOM`);
+        throw new Error(`Required selector "${selector}" was not found in the DOM`);
     }
 
     return element;
