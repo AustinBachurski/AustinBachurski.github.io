@@ -1,4 +1,4 @@
-import { DivStyle } from "./styles";
+import { DivStyle } from "./styles.js";
 
 export interface TerminalContent {
     style:  DivStyle;
@@ -20,7 +20,7 @@ export class HtmlLine implements TerminalContent {
 }
 
 export class DimGreenLine implements TerminalContent {
-    style = DivStyle.greenTextDim;
+    style = DivStyle.dimGreenText;
     text;
 
     constructor(content: string) {
@@ -29,7 +29,7 @@ export class DimGreenLine implements TerminalContent {
 }
 
 export class NormalGreenLine implements TerminalContent {
-    style = DivStyle.greenTextNormal;
+    style = DivStyle.normalGreenText;
     text;
 
     constructor(content: string) {
@@ -38,7 +38,7 @@ export class NormalGreenLine implements TerminalContent {
 }
 
 export class BrightGreenLine implements TerminalContent {
-    style = DivStyle.greenTextBright;
+    style = DivStyle.brightGreenText;
     text;
 
     constructor(content: string) {
@@ -47,7 +47,7 @@ export class BrightGreenLine implements TerminalContent {
 }
 
 export class AmberLine implements TerminalContent {
-    style = DivStyle.amberTextNormal;
+    style = DivStyle.normalAmberText;
     text;
 
     constructor(content: string) {

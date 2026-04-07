@@ -1,10 +1,10 @@
-import { NormalGreenLine, type TerminalContent }    from "../formatting/terminalContent";
-import { clearTerminal, pushContent }               from "../terminal/terminalWriter";
-import { displayHelpText }                          from "../commands/help";
-import { executeCD }                                from "../commands/cd";
-import { executeLS }                                from "../commands/ls";
-import { executeCAT }                               from "../commands/cat";
-import { executeEXIT }                              from "../commands/exit";
+import { NormalGreenLine, type TerminalContent }    from "../formatting/terminalContent.js";
+import { clearTerminal, pushContent }               from "../terminal/terminalWriter.js";
+import { displayHelpText }                          from "../commands/help.js";
+import { executeCD }                                from "../commands/cd.js";
+import { executeLS }                                from "../commands/ls.js";
+import { executeCAT }                               from "../commands/cat.js";
+import { executeEXIT }                              from "../commands/exit.js";
 
 export async function handleTerminalCommand(input: string): Promise<void> {
     const args = input.split(' ').filter(Boolean);
@@ -46,6 +46,7 @@ export async function handleTerminalCommand(input: string): Promise<void> {
 }
 
 function generateCommandNotFoundLine(command: string): TerminalContent {
-    return new NormalGreenLine( command.split(' ')[0] + ": command not found");
+    return new NormalGreenLine(
+        `${command.split(' ').filter(Boolean)[0]}: command not found`);
 }
 

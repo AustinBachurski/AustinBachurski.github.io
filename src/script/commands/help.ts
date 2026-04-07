@@ -1,6 +1,6 @@
-import { BlankLine, HtmlLine, NormalGreenLine } from "../formatting/terminalContent";
-import { DivStyle }                             from "../formatting/styles";
-import { pushContent }                          from "../terminalWriter";
+import { BlankLine, HtmlLine, NormalGreenLine } from "../formatting/terminalContent.js";
+import { DivStyle }                             from "../formatting/styles.js";
+import { pushContent }                          from "../terminal/terminalWriter.js";
 
 export async function displayHelpText(): Promise<void> {
     for (let line of helpContent) {

@@ -8,7 +8,7 @@ export function assertElementExists<T extends Element>(selector: string): T {
     return element;
 }
 
-export function sleep(milliseconds: number): Promise<void> {
+export async function sleep(milliseconds: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 

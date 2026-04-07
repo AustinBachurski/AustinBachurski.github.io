@@ -29,11 +29,10 @@ function buildTree(directory: string): Directory | File {
     }
 }
 
-const filesystem = buildTree("../content");
+const contentDirectory = path.resolve(process.cwd(), "data/content");
+const outputFile = path.resolve(process.cwd(), "data/filesystem.json");
+const filesystem = buildTree(contentDirectory);
 const root = { [FilesystemType.root]: filesystem };
 
-fs.writeFileSync(
-    "../src/filesystem/data/filesystem.json",
-    JSON.stringify(root, null, 4)
-);
+fs.writeFileSync(outputFile, JSON.stringify(root, null, 4));
 

@@ -1,6 +1,6 @@
-import type { TerminalContent }         from "../formatting/terminalContent";
-import { DivStyle }                     from "../formatting/styles";
-import { assertElementExists, sleep }   from "../utilities/utilities";
+import type { TerminalContent }         from "../formatting/terminalContent.js";
+import { DivStyle }                     from "../formatting/styles.js";
+import { assertElementExists, sleep }   from "../utilities/utilities.js";
 
 export function initializeTerminalWriter(): void {
     terminalOutput = assertElementExists<HTMLDivElement>("#terminal-content");
@@ -46,24 +46,24 @@ async function teletypeLine(content: TerminalContent): Promise<void> {
 
     if (content.style == DivStyle.empty) {
         scrollToBottom();
-        sleep(lineWriteDelay);
+        await sleep(lineWriteDelay);
         return;
     }
 
     if (content.style == DivStyle.html) {
         element.innerHTML = content.text;
         scrollToBottom();
-        sleep(lineWriteDelay);
+        await sleep(lineWriteDelay);
         return;
     }
 
     for (let c of content.text) {
         element.textContent += c;
         scrollToBottom();
-        sleep(charWriteDelay);
+        await sleep(charWriteDelay);
     }
 
-    sleep(lineWriteDelay);
+    await sleep(lineWriteDelay);
 }
 
 function scrollToBottom(): void {

@@ -1,10 +1,10 @@
-import { FilesystemType }               from "../filesystem/filesystemTypes";
-import { AmberLine, NormalGreenLine }   from "../formatting/terminalContent";
-import { cwdFromFilesystem }            from "../filesystem/filesystem";
-import { pushContent }                  from "../terminal/terminalWriter";
+import { FilesystemType }               from "../filesystem/filesystemTypes.js";
+import { AmberLine, NormalGreenLine }   from "../formatting/terminalContent.js";
+import { cwdFromFilesystem }            from "../filesystem/filesystem.js";
+import { pushContent }                  from "../terminal/terminalWriter.js";
 
 export async function executeLS(args: string[]): Promise<void> {
-    if (args) {
+    if (args.length > 0) {
         await lsWithArguments(args);
     } else {
         await lsNoArguments();
@@ -23,6 +23,7 @@ async function lsNoArguments(): Promise<void> {
     }
 }
 
+// @ts-ignore
 async function lsWithArguments(args: string[]): Promise<void> {
 
     // TODO: Handle Args.

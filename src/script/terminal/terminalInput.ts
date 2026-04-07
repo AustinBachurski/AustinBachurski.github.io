@@ -1,11 +1,11 @@
-import { DimGreenLine }             from "../formatting/terminalContent";
-import { assertElementExists }      from "../utilities/utilities";
-import { handleTerminalCommand }    from "../commands/commandHandler";
-import { pushContent }              from "./terminalWriter";
+import { DimGreenLine }             from "../formatting/terminalContent.js";
+import { assertElementExists }      from "../utilities/utilities.js";
+import { handleTerminalCommand }    from "../commands/commandHandler.js";
+import { pushContent }              from "./terminalWriter.js";
 
 
 export function initializeTerminalInputHandlers(): void {
-    inputElement                = assertElementExists<HTMLInputElement>("#hidden_terminal_input-element");
+    inputElement                = assertElementExists<HTMLInputElement>("#hidden-terminal-input-element");
     textDisplayedBeforeCursor   = assertElementExists<HTMLSpanElement>("#terminal-text-before-cursor");
     textDisplayedAfterCursor    = assertElementExists<HTMLSpanElement>("#terminal-text-after-cursor");
     displayedCWD                = assertElementExists<HTMLSpanElement>("#terminal-cwd-display");

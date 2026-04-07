@@ -34,50 +34,6 @@ html, body {
     overflow: hidden;
 }
 
-#tui-content {
-    flex: 0 1 auto;
-    display: flex;
-    flex-direction: column;
-    white-space: pre-wrap;
-    word-break: break-word;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-green-dim) transparent;
-}
-#tui-content::-webkit-scrollbar { width: 4px; }
-#tui-content::-webkit-scrollbar-track { background: transparent; }
-#tui-content::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 2px; }
-
-.dim-text {
-    color: var(--color-green-dim);
-    text-shadow: var(--glow-dim);
-}
-
-.amber-text {
-    color: var(--color-amber);
-    text-shadow: var(--glow-text);
-}
-
-.green-text {
-    color: var(--color-green);
-    text-shadow: var(--glow-text);
-}
-
-.bright-text {
-    color: var(--color-green-bright);
-    text-shadow: var(--glow-bright);
-}
-
-.bright-green {
-    color: var(--color-green-bright);
-    text-shadow: var(--glow-bright);
-}
-
-.empty-div {
-    min-height: var(--line-height);
-}
-
 #scanline-overlay {
     position: fixed;
     inset: 0;
@@ -92,7 +48,7 @@ html, body {
     z-index: 200;
 }
 
-#tui-border {
+#terminal-border {
     width: calc(100svw - 2rem); 
     height: calc(100svh - 2rem);
     display: flex;
@@ -104,9 +60,54 @@ html, body {
     margin: 1rem; 
 }
 
-/* Terminal Input */
+/*****************************************************************************/
+/* Dynamic Content */
+/*****************************************************************************/
 
-#tui-input-container {
+#terminal-content {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-green-dim) transparent;
+}
+#terminal-content::-webkit-scrollbar { width: 4px; }
+#terminal-content::-webkit-scrollbar-track { background: transparent; }
+#terminal-content::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 2px; }
+
+.empty-div {
+    min-height: var(--line-height);
+}
+
+.green-text-normal {
+    color: var(--color-green);
+    text-shadow: var(--glow-text);
+}
+
+.green-text-dim {
+    color: var(--color-green-dim);
+    text-shadow: var(--glow-dim);
+}
+
+.green-text-bright {
+    color: var(--color-green-bright);
+    text-shadow: var(--glow-bright);
+}
+
+.amber-text-normal {
+    color: var(--color-amber);
+    text-shadow: var(--glow-text);
+}
+
+/*****************************************************************************/
+/* Terminal Input */
+/*****************************************************************************/
+
+#terminal-input-container {
     flex: 0 0 auto;
     display: flex;
     align-items: flex-start;
@@ -114,7 +115,7 @@ html, body {
     overflow: hidden;
 }
 
-#tui-input-line {
+#terminal-input-line {
     display: flex;
     align-items: center;
     color: var(--color-green-bright);
@@ -123,23 +124,15 @@ html, body {
     white-space: pre;
 }
 
-.tui-input {
+.terminal-input {
     font-size: var(--default-font-size);
 }
 
-#hidden-terminal-input {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    pointer-events: none;
-}
-
-#tui-input-display {
+#terminal-text-before-cursor {
     white-space: pre;
 }
 
-#tui-input-after-cursor {
+#terminal-text-after-cursor {
     white-space: pre;
     color: var(--green-bright);
 }
@@ -148,7 +141,7 @@ html, body {
 0%, 49%   { opacity: 1; }
 50%, 100% { opacity: 0; }
 }
-#tui-input-cursor {
+#terminal-cursor {
     display: inline-block;
     width: var(--text-cursor-width);
     height: 1rem;
@@ -161,5 +154,13 @@ html, body {
     left: -.25px;
     mix-blend-mode: difference;
     z-index: 1;
+}
+
+#hidden-terminal-input-element {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
 }
 
