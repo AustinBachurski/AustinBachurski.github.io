@@ -109,10 +109,42 @@ html, body {
 
 #terminal-input-container {
     flex: 0 0 auto;
-    display: flex;
+    /*display: flex;*/
     align-items: flex-start;
     align-content: center;
     overflow: hidden;
+}
+.loading {
+    display: flex;
+    color: var(--color-green-bright);
+    text-shadow: var(--glow-bright);
+}
+
+.progress::after {
+    content: '';
+    animation: progress 2s;
+}
+@keyframes progress {
+    0%      { content: '.'; }
+    5%      { content: '..'; }
+    10%     { content: '...'; }
+    15%     { content: '....'; }
+    20%     { content: '.........'; }
+    25%     { content: '..........'; }
+    30%     { content: '................'; }
+    35%     { content: '.................'; }
+    40%     { content: '..........................'; }
+    45%     { content: '...........................'; }
+    50%     { content: '............................'; }
+    55%     { content: '.......................................'; }
+    65%     { content: '........................................'; }
+    70%     { content: '.........................................'; }
+    75%     { content: '..........................................'; }
+    80%     { content: '...........................................'; }
+    85%     { content: '......................................................'; }
+    90%     { content: '..........................................................'; }
+    95%     { content: '..............................................................'; }
+    100%    { content: '................................................................'; }
 }
 
 #terminal-input-line {

@@ -16,10 +16,14 @@
         <div id="terminal-border">
 
             <!-- Teletype Terminal -->
-            <div id="terminal-content"> </div>
+            <div id="terminal-content">
+                <div class="loading">
+                    <span class="progress">Initializing</span>
+                </div>
+            </div>
 
             <!-- Terminal Input Display -->
-            <div id="terminal-input-container">
+            <div id="terminal-input-container" style="display: none">
                 <div id="terminal-input-line">
                     <span id="terminal-user" class="terminal-input">guest@bach-term:</span>
                     <span id="terminal-cwd-display" class="terminal-input">~</span>

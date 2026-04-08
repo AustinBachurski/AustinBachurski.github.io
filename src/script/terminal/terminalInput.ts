@@ -13,7 +13,6 @@ export function initializeTerminalInputHandlers(): void {
     document.addEventListener("click", () => inputElement.focus());
     inputElement.addEventListener("input", onInputChanged);
     inputElement.addEventListener("keydown", onKeypress);
-    inputElement.focus();
 }
 
 let inputElement: HTMLInputElement;
