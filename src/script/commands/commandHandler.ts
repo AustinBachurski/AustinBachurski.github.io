@@ -1,6 +1,6 @@
 import { NormalGreenLine }              from "../formatting/terminalContent.js";
 import { clearTerminal, pushContent }   from "../terminal/terminalWriter.js";
-import { displayHelpText }              from "../commands/help.js";
+import { help }                         from "../commands/help.js";
 import { executeCD }                    from "../commands/cd.js";
 import { executeLS }                    from "../commands/ls.js";
 import { executeCAT }                   from "../commands/cat.js";
@@ -20,7 +20,7 @@ export async function handleTerminalCommand(input: string): Promise<void> {
             break;
 
         case "help":
-            await displayHelpText();
+            await help(args);
             break;
 
         case "cd":
