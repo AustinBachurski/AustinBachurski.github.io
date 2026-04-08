@@ -5,8 +5,8 @@ import { clearTerminal, pushContent }                        from "./terminalWri
 
 export async function terminalReady(): Promise<void> {
     clearTerminal();
-    assertElementExists<HTMLDivElement>("#terminal-input-container").style.display = "flex";
     await writeWelcomeMessage();
+    assertElementExists<HTMLDivElement>("#terminal-input-container").style.display = "flex";
     assertElementExists<HTMLInputElement>("#hidden-terminal-input-element").focus();
 }
 
