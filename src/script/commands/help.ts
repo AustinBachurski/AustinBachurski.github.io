@@ -8,7 +8,7 @@ import { helpContent, helpHelpContent } from "./helpContent/help.js";
 import { exitHelpContent }              from "./helpContent/exit.js";
 import { lsHelpContent }                from "./helpContent/ls.js";
 
-export async function help(args: string[]): Promise<void> {
+export async function executeHELP(args: string[]): Promise<void> {
     switch (args[0]) {
         case "cat":
             await display(catHelpContent);

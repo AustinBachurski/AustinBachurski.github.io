@@ -1,10 +1,10 @@
 import { NormalGreenLine }              from "../formatting/terminalContent.js";
 import { clearTerminal, pushContent }   from "../terminal/terminalWriter.js";
-import { help }                         from "../commands/help.js";
-import { executeCD }                    from "../commands/cd.js";
-import { executeLS }                    from "../commands/ls.js";
-import { executeCAT }                   from "../commands/cat.js";
-import { executeEXIT }                  from "../commands/exit.js";
+import { executeCAT }                   from "./cat.js";
+import { executeCD }                    from "./cd.js";
+import { executeEXIT }                  from "./exit.js";
+import { executeHELP }                  from "./help.js";
+import { executeLS }                    from "./ls.js";
 
 export async function handleTerminalCommand(input: string): Promise<void> {
     const args = input.split(' ').filter(Boolean);
@@ -19,24 +19,24 @@ export async function handleTerminalCommand(input: string): Promise<void> {
             clearTerminal();
             break;
 
-        case "help":
-            await help(args);
+        case "cat":
+            await executeCAT(args);
             break;
 
         case "cd":
             await executeCD(args);
             break;
 
-        case "ls":
-            await executeLS(args);
-            break;
-
-        case "cat":
-            await executeCAT(args);
-            break;
-
         case "exit":
             await executeEXIT(args);
+            break;
+
+        case "help":
+            await executeHELP(args);
+            break;
+
+        case "ls":
+            await executeLS(args);
             break;
 
         default:
