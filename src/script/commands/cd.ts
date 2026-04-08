@@ -25,7 +25,7 @@ async function traverseFilesystem(target: string): Promise<void> {
     const args = target.split('/').filter(Boolean);
 
     let cwd = cwdFromFilesystem();
-    let path = cwdDisplay.textContent.split('/');
+    let path = cwdDisplay.textContent.split('/').filter(Boolean);
 
     for (let dir of args) {
         if (dir == "..") {
@@ -50,11 +50,12 @@ async function traverseFilesystem(target: string): Promise<void> {
             throw new FilesystemCwdError();
         }
 
+        path.push(dir);
         cwd = next;
     }
 
-
-    cwdDisplay.textContent += `/${args.join('/')}`;
+    const result = path.join('/');
+    cwdDisplay.textContent = result.length > 0 ? result : '/';
 }
 
 function reportError(target: string, message: string): void {

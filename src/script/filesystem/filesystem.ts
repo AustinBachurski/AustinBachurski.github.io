@@ -8,7 +8,7 @@ export async function initializeFilesystem(): Promise<void> {
     filesystem = await readFilesystem("/data/filesystem.json");
 }
 
-export function cwdFromFilesystem(path = cwdDisplay.textContent.split('/')): Directory {
+export function cwdFromFilesystem(path = cwdDisplay.textContent.split('/').filter(Boolean)): Directory {
     let cwd = filesystem[FilesystemType.root];
 
     for (let dir of path) {
