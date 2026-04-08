@@ -5,10 +5,10 @@ export const lsHelpContent = [
     new NormalGreenLine("\tList information about the FILEs (the current directory by default)."),
     new BlankLine(),
     new NormalGreenLine("\tOptions:"),
-    new NormalGreenLine("\t    -ls\tDisplay information in a list view."),
+    new NormalGreenLine("\t     -l \tDisplay information in a list view."),
     new BlankLine(),
     new NormalGreenLine("\tArguments:"),
-    new NormalGreenLine("\t     FILE\tThe directory or file to display."),
+    new NormalGreenLine("\t     FILE \tThe directory or file to display."),
     new BlankLine(),
 ];
 
