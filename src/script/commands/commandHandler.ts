@@ -28,7 +28,7 @@ export async function handleTerminalCommand(input: string): Promise<void> {
             break;
 
         case "ls":
-            await executeLS(args);
+            executeLS(args);
             break;
 
         case "cat":

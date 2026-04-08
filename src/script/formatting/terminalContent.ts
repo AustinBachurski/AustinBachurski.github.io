@@ -1,6 +1,5 @@
-import { DivStyle } from "./styles.js";
-
-const charWriteDelay = 7;
+import { DivStyle }     from "./styles.js";
+import { WriteDelay }   from "../terminal/writeDelay.js";
 
 export interface TerminalContent {
     style:  DivStyle;
@@ -11,13 +10,13 @@ export interface TerminalContent {
 export class BlankLine implements TerminalContent {
     style = DivStyle.empty;
     text = "";
-    typeDelay = 0;
+    typeDelay = WriteDelay.ms_0;
 }
 
 export class HtmlLine implements TerminalContent {
     style = DivStyle.html;
     text;
-    typeDelay = 0;
+    typeDelay = WriteDelay.ms_0;
 
     constructor(content: string) {
         this.text = content;
@@ -29,7 +28,7 @@ export class DimGreenLine implements TerminalContent {
     text;
     typeDelay;
 
-    constructor(content: string, delay = charWriteDelay) {
+    constructor(content: string, delay = WriteDelay.ms_7) {
         this.text   = content;
         this.typeDelay = delay;
     }
@@ -40,7 +39,7 @@ export class NormalGreenLine implements TerminalContent {
     text;
     typeDelay;
 
-    constructor(content: string, delay = charWriteDelay) {
+    constructor(content: string, delay = WriteDelay.ms_7) {
         this.text   = content;
         this.typeDelay = delay;
     }
@@ -51,7 +50,7 @@ export class BrightGreenLine implements TerminalContent {
     text;
     typeDelay;
 
-    constructor(content: string, delay = charWriteDelay) {
+    constructor(content: string, delay = WriteDelay.ms_7) {
         this.text   = content;
         this.typeDelay = delay;
     }
@@ -62,7 +61,7 @@ export class AmberLine implements TerminalContent {
     text;
     typeDelay;
 
-    constructor(content: string, delay = charWriteDelay) {
+    constructor(content: string, delay = WriteDelay.ms_7) {
         this.text   = content;
         this.typeDelay = delay;
     }

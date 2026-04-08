@@ -1,5 +1,6 @@
 import type { TerminalContent }         from "../formatting/terminalContent.js";
 import { DivStyle }                     from "../formatting/styles.js";
+import { WriteDelay }                   from "../terminal/writeDelay.js";
 import { assertElementExists, sleep }   from "../utilities/utilities.js";
 
 export function initializeTerminalWriter(): void {
@@ -27,15 +28,17 @@ export function clearTerminal(): void {
     terminalOutput.innerHTML = "";
 }
 
-const lineWriteDelay = 100;
-
 let lineQueue:          TerminalContent[]   = [];
 let generatingOutput:   boolean             = false;
 let terminalOutput:     HTMLDivElement;
 
 function createLineElement(style: DivStyle): HTMLDivElement {
     const div = document.createElement("div");
-    div.classList.add(style);
+
+    if (style) {
+        div.classList.add(style);
+    }
+
     return div;
 }
 
@@ -45,21 +48,21 @@ async function teletypeLine(content: TerminalContent): Promise<void> {
 
     if (content.style == DivStyle.empty) {
         scrollToBottom();
-        await sleep(lineWriteDelay);
+        await sleep(WriteDelay.ms_100);
         return;
     }
 
     if (content.style == DivStyle.html) {
         element.innerHTML = content.text;
         scrollToBottom();
-        await sleep(lineWriteDelay);
+        await sleep(WriteDelay.ms_100);
         return;
     }
 
     if (content.typeDelay == 0) {
         element.textContent = content.text;
         scrollToBottom();
-        await sleep(lineWriteDelay);
+        await sleep(WriteDelay.ms_100);
         return;
     }
 
@@ -69,7 +72,7 @@ async function teletypeLine(content: TerminalContent): Promise<void> {
         await sleep(content.typeDelay);
     }
 
-    await sleep(lineWriteDelay);
+    await sleep(WriteDelay.ms_100);
 }
 
 function scrollToBottom(): void {

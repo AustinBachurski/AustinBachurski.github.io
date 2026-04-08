@@ -1,6 +1,7 @@
 import { FilesystemCwdError }   from "../filesystem/errors.js";
 import { FilesystemType }       from "../filesystem/filesystemTypes.js";
 import { NormalGreenLine }      from "../formatting/terminalContent.js";
+import { WriteDelay }           from "../terminal/writeDelay.js";
 import { assertElementExists }  from "../utilities/utilities.js";
 import { cwdFromFilesystem }    from "../filesystem/filesystem.js";
 import { pushContent }          from "../terminal/terminalWriter.js";
@@ -12,11 +13,11 @@ export async function executeCD(args: string[]): Promise<void> {
     }
 
     if (args.length > 1) {
-        pushContent(new NormalGreenLine("cd: too many arguments"));
+        await pushContent(new NormalGreenLine("cd: too many arguments"));
         return;
     }
 
-    traverseFilesystem(args[0]!);
+    await traverseFilesystem(args[0]!);
 }
 
 const cwdDisplay = assertElementExists<HTMLSpanElement>("#terminal-cwd-display");
@@ -35,12 +36,12 @@ async function traverseFilesystem(target: string): Promise<void> {
         }
 
         if (!(dir in cwd.entries)) {
-            reportError(target, "No such file or directory");
+            await reportError(target, "No such file or directory");
             return;
         }
 
         if ((cwd.entries[dir]!).type != FilesystemType.directory) {
-            reportError(target, "Not a directory");
+            await reportError(target, "Not a directory");
             return;
         }
 
@@ -58,7 +59,8 @@ async function traverseFilesystem(target: string): Promise<void> {
     cwdDisplay.textContent = result.length > 0 ? result : '/';
 }
 
-function reportError(target: string, message: string): void {
-    pushContent(new NormalGreenLine(`cd: ${target}: ${message}`));
+async function reportError(target: string, message: string): Promise<void> {
+    await pushContent(
+        new NormalGreenLine(`cd: ${target}: ${message}`, WriteDelay.ms_0));
 }
 
