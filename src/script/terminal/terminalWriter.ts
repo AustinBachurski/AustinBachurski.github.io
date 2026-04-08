@@ -27,7 +27,6 @@ export function clearTerminal(): void {
     terminalOutput.innerHTML = "";
 }
 
-const charWriteDelay = 7;
 const lineWriteDelay = 100;
 
 let lineQueue:          TerminalContent[]   = [];
@@ -57,10 +56,17 @@ async function teletypeLine(content: TerminalContent): Promise<void> {
         return;
     }
 
+    if (content.typeDelay == 0) {
+        element.textContent = content.text;
+        scrollToBottom();
+        await sleep(lineWriteDelay);
+        return;
+    }
+
     for (let c of content.text) {
         element.textContent += c;
         scrollToBottom();
-        await sleep(charWriteDelay);
+        await sleep(content.typeDelay);
     }
 
     await sleep(lineWriteDelay);

@@ -41,7 +41,7 @@ function moveCursorTo(target: number): void {
 
 function appendInputLineToTerminalOutput(text: string): void {
     pushContent(new DimGreenLine(
-        `guest@bach-term:${displayedCWD.textContent}$ ${text}`
+        `guest@bach-term:${displayedCWD.textContent}$ ${text}`, 0
     ));
 }
 
