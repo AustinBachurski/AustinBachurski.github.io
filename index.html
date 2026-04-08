@@ -14,33 +14,34 @@
         <div id="scanline-overlay" aria-hidden="true"></div>
 
         <div id="terminal-border">
-
-            <!-- Teletype Terminal -->
-            <div id="terminal-content">
-                <div class="loading">
-                    <span class="progress">Initializing</span>
+            <div id="terminal-viewport">
+                <!-- Teletype Terminal -->
+                <div id="terminal-content">
+                    <div class="loading">
+                        <span class="progress">Initializing</span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Terminal Input Display -->
-            <div id="terminal-input-container" style="display: none">
-                <div id="terminal-input-line">
-                    <span id="terminal-user" class="terminal-input">guest@bach-term:</span>
-                    <span id="terminal-cwd-display" class="terminal-input">~</span>
-                    <span class="terminal-input">$ </span>
-                    <span id="terminal-text-before-cursor" class="terminal-input"></span>
-                    <span id="terminal-cursor" class="terminal-input"></span>
-                    <span id="terminal-text-after-cursor" class="terminal-input"></span>
+                <!-- Terminal Input Display -->
+                <div id="terminal-input-container" style="display: none">
+                    <div id="terminal-input-line">
+                        <span id="terminal-user" class="terminal-input">guest@bach-term:</span>
+                        <span id="terminal-cwd-display" class="terminal-input">~</span>
+                        <span class="terminal-input">$ </span>
+                        <span id="terminal-text-before-cursor" class="terminal-input"></span>
+                        <span id="terminal-cursor" class="terminal-input"></span>
+                        <span id="terminal-text-after-cursor" class="terminal-input"></span>
 
-                    <!-- Text Input (hidden) -->
-                    <input id="hidden-terminal-input-element"
-                        type="text"
-                        autocomplete="off"
-                        autocorrect="off"
-                        spellcheck="false"
-                        autocapitalize="off"
-                        label="terminal input"
-                        tabindex="0" />
+                        <!-- Text Input (hidden) -->
+                        <input id="hidden-terminal-input-element"
+                            type="text"
+                            autocomplete="off"
+                            autocorrect="off"
+                            spellcheck="false"
+                            autocapitalize="off"
+                            label="terminal input"
+                            tabindex="0" />
+                    </div>
                 </div>
             </div>
         </div>

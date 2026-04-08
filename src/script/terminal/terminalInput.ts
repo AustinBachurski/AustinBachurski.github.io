@@ -10,7 +10,7 @@ export function initializeTerminalInputHandlers(): void {
     textDisplayedAfterCursor    = assertElementExists<HTMLSpanElement>("#terminal-text-after-cursor");
     displayedCWD                = assertElementExists<HTMLSpanElement>("#terminal-cwd-display");
 
-    document.addEventListener("click", () => inputElement.focus());
+    document.addEventListener("click", () => inputElement.focus({ preventScroll: true }));
     inputElement.addEventListener("input", onInputChanged);
     inputElement.addEventListener("keydown", onKeypress);
 }

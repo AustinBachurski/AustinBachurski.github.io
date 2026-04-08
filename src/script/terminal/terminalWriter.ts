@@ -4,6 +4,7 @@ import { WriteDelay }                   from "../terminal/writeDelay.js";
 import { assertElementExists, sleep }   from "../utilities/utilities.js";
 
 export function initializeTerminalWriter(): void {
+    terminalViewport = assertElementExists<HTMLDivElement>("#terminal-viewport");
     terminalOutput = assertElementExists<HTMLDivElement>("#terminal-content");
 }
 
@@ -30,6 +31,7 @@ export function clearTerminal(): void {
 
 let lineQueue:          TerminalContent[]   = [];
 let generatingOutput:   boolean             = false;
+let terminalViewport:   HTMLDivElement;
 let terminalOutput:     HTMLDivElement;
 
 function createLineElement(style: DivStyle): HTMLDivElement {
@@ -43,7 +45,7 @@ function createLineElement(style: DivStyle): HTMLDivElement {
 }
 
 function scrollToBottom(): void {
-    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    terminalViewport.scrollTop = terminalViewport.scrollHeight;
 }
 
 async function teletypeLine(content: TerminalContent): Promise<void> {

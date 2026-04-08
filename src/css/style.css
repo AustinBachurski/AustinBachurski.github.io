@@ -56,9 +56,21 @@ html, body {
     box-sizing: border-box;
     overflow: hidden;
     border: .2rem solid var(--color-green-bright);
-    padding: 1rem;
     margin: 1rem; 
+    overflow: hidden;
 }
+
+#terminal-viewport {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-green-dim) transparent;
+}
+
+#terminal-viewport::-webkit-scrollbar { width: 4px; }
+#terminal-viewport::-webkit-scrollbar-thumb { background: var(--color-green-dim); border-radius: 2px; }
 
 /*****************************************************************************/
 /* Dynamic Content */
@@ -66,18 +78,12 @@ html, body {
 
 #terminal-content {
     flex: 0 1 auto;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     white-space: pre-wrap;
     word-break: break-word;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-green-dim) transparent;
 }
-#terminal-content::-webkit-scrollbar { width: 4px; }
-#terminal-content::-webkit-scrollbar-track { background: transparent; }
-#terminal-content::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 2px; }
 
 .empty-div {
     min-height: var(--line-height);
@@ -109,7 +115,7 @@ html, body {
 
 #terminal-input-container {
     flex: 0 0 auto;
-    /*display: flex;*/
+    flex-direction: column;
     align-items: flex-start;
     align-content: center;
     overflow: hidden;
@@ -154,6 +160,7 @@ html, body {
     text-shadow: var(--glow-bright);
     cursor: default;
     white-space: pre;
+    min-height: 1rem;
 }
 
 .terminal-input {
