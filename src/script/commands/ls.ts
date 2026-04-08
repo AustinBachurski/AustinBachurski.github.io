@@ -44,38 +44,6 @@ export async function executeLS(args: string[]): Promise<void> {
 const cwdDisplay = assertElementExists<HTMLSpanElement>("#terminal-cwd-display");
 const supportedFlags = ["l"];
 
-async function ls(args: string): Promise<void> {
-    const directory = await findTargetDirectory(args);
-
-    if (!directory) { return; }
-
-    let items: string[] = [];
-
-    for (let entry of Object.keys(directory.entries)) {
-        if (directory.entries[entry]!.type == FilesystemType.file) {
-            items.push(entry);
-        } else {
-            items.push(`${entry}/`);
-        }
-    }
-
-    await pushContent(new NormalGreenLine(items.join(' ')));
-}
-
-async function ls_l(args: string): Promise<void> {
-    const directory = await findTargetDirectory(args);
-
-    if (!directory) { return; }
-
-    for (let entry of Object.keys(directory.entries)) {
-        if (directory.entries[entry]!.type == FilesystemType.file) {
-            await pushContent(new NormalGreenLine(entry));
-        } else {
-            await pushContent(new NormalGreenLine(`${entry}/`));
-        }
-    }
-}
-
 async function unsupportedFlag(flags: string[]): Promise<Boolean> {
     for (let flag of flags) {
         if (!supportedFlags.includes(flag)) {
@@ -86,17 +54,6 @@ async function unsupportedFlag(flags: string[]): Promise<Boolean> {
     }
 
     return false;
-}
-
-async function exec(flags: string, args: string): Promise<void> {
-    switch (flags) {
-        case "":
-            await ls(args);
-            break;
-        case "l":
-            await ls_l(args);
-            break;
-    }
 }
 
 async function purgeInvalidPaths(args: string[]): Promise<string[]> {
@@ -150,6 +107,11 @@ async function purgeInvalidPaths(args: string[]): Promise<string[]> {
     return validPaths;
 }
 
+async function reportError(target: string, message: string): Promise<void> {
+    await pushContent(new NormalGreenLine(
+        `ls: cannot access '${target}': ${message}`, WriteDelay.ms_0));
+}
+
 async function findTargetDirectory(args: string): Promise<Directory | undefined> {
     let cwd = cwdFromFilesystem();
 
@@ -190,8 +152,46 @@ async function findTargetDirectory(args: string): Promise<Directory | undefined>
     return cwd;
 }
 
-async function reportError(target: string, message: string): Promise<void> {
-    await pushContent(new NormalGreenLine(
-        `ls: cannot access '${target}': ${message}`, WriteDelay.ms_0));
+async function ls(args: string): Promise<void> {
+    const directory = await findTargetDirectory(args);
+
+    if (!directory) { return; }
+
+    let items: string[] = [];
+
+    for (let entry of Object.keys(directory.entries)) {
+        if (directory.entries[entry]!.type == FilesystemType.file) {
+            items.push(entry);
+        } else {
+            items.push(`${entry}/`);
+        }
+    }
+
+    await pushContent(new NormalGreenLine(items.join(' ')));
+}
+
+async function ls_l(args: string): Promise<void> {
+    const directory = await findTargetDirectory(args);
+
+    if (!directory) { return; }
+
+    for (let entry of Object.keys(directory.entries)) {
+        if (directory.entries[entry]!.type == FilesystemType.file) {
+            await pushContent(new NormalGreenLine(entry));
+        } else {
+            await pushContent(new NormalGreenLine(`${entry}/`));
+        }
+    }
+}
+
+async function exec(flags: string, args: string): Promise<void> {
+    switch (flags) {
+        case "":
+            await ls(args);
+            break;
+        case "l":
+            await ls_l(args);
+            break;
+    }
 }
 

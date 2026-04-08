@@ -22,27 +22,27 @@ let textDisplayedAfterCursor: HTMLSpanElement;
 let displayedCWD: HTMLSpanElement;
 let cursorPosition: number = 0;
 
-function onInputChanged(): void {
-    cursorPosition = inputElement.selectionStart ?? inputElement.value.length;
-    syncCursorDisplay();
-};
-
 function syncCursorDisplay(): void {
     const text = inputElement.value;
     textDisplayedBeforeCursor.textContent  = text.slice(0, cursorPosition);
     textDisplayedAfterCursor.textContent = text.slice(cursorPosition);
 }
 
-function moveCursorTo(target: number): void {
-    cursorPosition = Math.max(0, Math.min(target, inputElement.value.length));
-    inputElement.setSelectionRange(cursorPosition, cursorPosition);
+function onInputChanged(): void {
+    cursorPosition = inputElement.selectionStart ?? inputElement.value.length;
     syncCursorDisplay();
-}
+};
 
 function appendInputLineToTerminalOutput(text: string): void {
     pushContent(new DimGreenLine(
         `guest@bach-term:${displayedCWD.textContent}$ ${text}`, 0
     ));
+}
+
+function moveCursorTo(target: number): void {
+    cursorPosition = Math.max(0, Math.min(target, inputElement.value.length));
+    inputElement.setSelectionRange(cursorPosition, cursorPosition);
+    syncCursorDisplay();
 }
 
 function onKeypress(event: KeyboardEvent): void {

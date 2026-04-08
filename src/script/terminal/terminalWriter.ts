@@ -42,6 +42,10 @@ function createLineElement(style: DivStyle): HTMLDivElement {
     return div;
 }
 
+function scrollToBottom(): void {
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+}
+
 async function teletypeLine(content: TerminalContent): Promise<void> {
     const element = createLineElement(content.style);
     terminalOutput.appendChild(element);
@@ -73,9 +77,5 @@ async function teletypeLine(content: TerminalContent): Promise<void> {
     }
 
     await sleep(WriteDelay.ms_100);
-}
-
-function scrollToBottom(): void {
-    terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 

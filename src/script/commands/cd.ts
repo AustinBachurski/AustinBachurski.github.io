@@ -22,6 +22,11 @@ export async function executeCD(args: string[]): Promise<void> {
 
 const cwdDisplay = assertElementExists<HTMLSpanElement>("#terminal-cwd-display");
 
+async function reportError(target: string, message: string): Promise<void> {
+    await pushContent(
+        new NormalGreenLine(`cd: ${target}: ${message}`, WriteDelay.ms_0));
+}
+
 async function traverseFilesystem(target: string): Promise<void> {
     const args = target.split('/').filter(Boolean);
 
@@ -57,10 +62,5 @@ async function traverseFilesystem(target: string): Promise<void> {
 
     const result = path.join('/');
     cwdDisplay.textContent = result.length > 0 ? result : '/';
-}
-
-async function reportError(target: string, message: string): Promise<void> {
-    await pushContent(
-        new NormalGreenLine(`cd: ${target}: ${message}`, WriteDelay.ms_0));
 }
 
