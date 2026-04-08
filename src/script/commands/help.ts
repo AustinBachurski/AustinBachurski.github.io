@@ -3,6 +3,7 @@ import { pushContent } from "../terminal/terminalWriter.js";
 import { catHelpContent } from "./helpContent/cat.js";
 import { cdHelpContent } from "./helpContent/cd.js";
 import { helpContent, helpHelpContent } from "./helpContent/help.js";
+import { lsHelpContent } from "./helpContent/ls.js";
 
 export async function help(args: string[]): Promise<void> {
     switch (args[0]) {
@@ -15,6 +16,7 @@ export async function help(args: string[]): Promise<void> {
         break;
 
         case "ls":
+            display(lsHelpContent);
         break;
 
         case "cat":
