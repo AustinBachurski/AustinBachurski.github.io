@@ -1,5 +1,7 @@
 import type { TerminalContent } from "../formatting/terminalContent.js";
 import { pushContent } from "../terminal/terminalWriter.js";
+import { catHelpContent } from "./helpContent/cat.js";
+import { cdHelpContent } from "./helpContent/cd.js";
 import { helpContent, helpHelpContent } from "./helpContent/help.js";
 
 export async function help(args: string[]): Promise<void> {
@@ -9,12 +11,14 @@ export async function help(args: string[]): Promise<void> {
         break;
 
         case "cd":
+            display(cdHelpContent);
         break;
 
         case "ls":
         break;
 
         case "cat":
+            display(catHelpContent);
         break;
 
         case "exit":
