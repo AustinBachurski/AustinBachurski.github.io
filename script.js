@@ -1,7 +1,13 @@
+let checkboxes = document.querySelectorAll('.buttons input');
+let contentSections = document.querySelectorAll('.content-section');
+let navMenu = document.getElementById('navMenu');
+let welcome = document.getElementById('welcome');
+
 document.addEventListener('DOMContentLoaded', function () {
-    const checkboxes = document.querySelectorAll('.buttons input');
-    const contentSections = document.querySelectorAll('.content-section');
-    const navMenu = document.getElementById('navMenu');
+    checkboxes = document.querySelectorAll('.buttons input');
+    contentSections = document.querySelectorAll('.content-section');
+    navMenu = document.getElementById('navMenu');
+    welcome = document.getElementById('welcome');
 
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function () {
@@ -29,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const boxes = Array.from(checkboxes);
 
             if (boxes.every(item => item.checked == false)) {
-                welcome = document.getElementById('welcome');
                 welcome.style.display = 'block';
             }
         });
