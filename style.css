@@ -560,7 +560,6 @@ i {
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: baseline;
-    white-space: nowrap;
 }
 
 .social-links:hover {
