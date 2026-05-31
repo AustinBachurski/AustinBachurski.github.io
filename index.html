@@ -1,700 +1,564 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
-        <title>Austin Bachurski - Portfolio</title>
-    </head>
-    <body>
-        <div class="container">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Austin Bachurski - Portfolio</title>
+  </head>
+  <body>
+    <div class="container">
 
-            <div class="navbar">
-                <button class="hamburger" onclick="toggleMenu()"> ☰ </button>
-                <nav id="navMenu" class="hidden">
-                    <div class="buttons">
-                        <label>
-                            <input type="checkbox" name="skills">
-                            <span></span>
-                            <b>Skills</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="about">
-                            <span></span>
-                            <b>About Me</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="work-history">
-                            <span></span>
-                            <b>Work History</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="projects">
-                            <span></span>
-                            <b>Projects</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="blog">
-                            <span></span>
-                            <b>Learning Blog</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="links">
-                            <span></span>
-                            <b>Links</b>
-                        </label>
-                        <button class="other-buttons" id="swap-colors" onclick="swapColors()">Toggle Light/Dark Mode</button>
-                    </div>
-                </nav>
-            </div>
+      <div class="navbar">
+        <button class="hamburger" onclick="toggleMenu()"> ☰ </button>
+        <nav id="navMenu" class="hidden">
+          <div class="buttons">
+            <label>
+              <input type="checkbox" name="skills">
+              <span></span>
+              <b>Skills</b>
+            </label>
+            <label>
+              <input type="checkbox" name="about">
+              <span></span>
+              <b>About Me</b>
+            </label>
+            <label>
+              <input type="checkbox" name="work-history">
+              <span></span>
+              <b>Work History</b>
+            </label>
+            <label>
+              <input type="checkbox" name="projects">
+              <span></span>
+              <b>Projects</b>
+            </label>
+            <label>
+              <input type="checkbox" name="blog">
+              <span></span>
+              <b>Learning Blog</b>
+            </label>
+            <label>
+              <input type="checkbox" name="links">
+              <span></span>
+              <b>Links</b>
+            </label>
+            <button class="other-buttons" id="swap-colors" onclick="swapColors()">Toggle Light/Dark Mode</button>
+          </div>
+        </nav>
+      </div>
 
-            <!-- Left Section -->
-            <div id="leftSection" class="left-section">
-                <header>
-                    <h1 class="myName">Joseph<br>Austin<br>Bachurski</h1>
-                    <!-- Navigation Links -->
-                    <div class="buttons">
-                        <label>
-                            <input type="checkbox" name="skills">
-                            <span></span>
-                            <b>Skills</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="about">
-                            <span></span>
-                            <b>About Me</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="work-history">
-                            <span></span>
-                            <b>Work History</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="projects">
-                            <span></span>
-                            <b>Projects</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="blog">
-                            <span></span>
-                            <b>Learning Blog</b>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="links">
-                            <span></span>
-                            <b>Links</b>
-                        </label>
-                        <button id="swap-colors" onclick="swapColors()">Toggle Light/Dark Mode</button>
-                    </div>
-                </header>
-                <div class="filler"></div>
-            </div>
+      <!-- Left Section -->
+      <div id="leftSection" class="left-section">
+        <header>
+          <h1 class="myName">Joseph<br>Austin<br>Bachurski</h1>
+          <!-- Navigation Links -->
+          <div class="buttons">
+            <label>
+              <input type="checkbox" name="skills">
+              <span></span>
+              <b>Skills</b>
+            </label>
+            <label>
+              <input type="checkbox" name="about">
+              <span></span>
+              <b>About Me</b>
+            </label>
+            <label>
+              <input type="checkbox" name="work-history">
+              <span></span>
+              <b>Work History</b>
+            </label>
+            <label>
+              <input type="checkbox" name="projects">
+              <span></span>
+              <b>Projects</b>
+            </label>
+            <label>
+              <input type="checkbox" name="blog">
+              <span></span>
+              <b>Learning Blog</b>
+            </label>
+            <label>
+              <input type="checkbox" name="links">
+              <span></span>
+              <b>Links</b>
+            </label>
+            <button id="swap-colors" onclick="swapColors()">Toggle Light/Dark Mode</button>
+          </div>
+        </header>
+        <div class="filler"></div>
+      </div>
 
-            <!-- Content Sections -->
-            <div id="welcome" class="content-section">
-                <img src="pictures/picture.png" alt="Picture missing...">
-                <p>
-                    Hi, I'm Austin, welcome to my portfolio page.
-                </p>
-                <p>
-                    Please make a selection from the menu on the left,
-                    thanks for stopping by.
-                </p>
-            </div>
+      <!-- Content Sections -->
+      <div id="welcome" class="content-section">
+        <img src="pictures/picture.png" alt="Picture missing...">
+        <p>
+        Hi, I'm Austin, welcome to my portfolio page.
+        </p>
+        <p>
+        Please make a selection from the menu on the left, thanks for stopping by.
+        </p>
+      </div>
 
-            <div id="skills" class="content-section">
-                <header><b>Skills</b></header>
-                <li><h3>C++</h3>
-                    <span class="bar"><span class="cpp"></span></span>
-                </li>
+      <div id="skills" class="content-section">
+        <header><b>Skills</b></header>
+        <p>
+        How I rate my skill with each of the following languages relative to one another.
+        </p>
+        <li><h3>C++</h3>
+          <span class="bar"><span class="cpp"></span></span>
+        </li>
 
-                <li><h3>Python</h3>
-                    <span class="bar"><span class="python"></span></span>
-                </li>
+        <li><h3>Python</h3>
+          <span class="bar"><span class="python"></span></span>
+        </li>
 
-                <li><h3>C#</h3>
-                    <span class="bar"><span class="sql"></span></span>
-                </li>
+        <li><h3>C</h3>
+          <span class="bar"><span class="sql"></span></span>
+        </li>
 
-                <li><h3>C</h3>
-                    <span class="bar"><span class="csharp"></span></span>
-                </li>
+        <li><h3>C#</h3>
+          <span class="bar"><span class="csharp"></span></span>
+        </li>
 
-                <li><h3>CMake</h3>
-                    <span class="bar"><span class="cmake"></span></span>
-                </li>
+        <li><h3>CMake</h3>
+          <span class="bar"><span class="cmake"></span></span>
+        </li>
 
-                <li><h3>SQL</h3>
-                    <span class="bar"><span class="c"></span></span>
-                </li>
+        <li><h3>SQL</h3>
+          <span class="bar"><span class="c"></span></span>
+        </li>
 
-                <li><h3>Rust</h3>
-                    <span class="bar"><span class="c"></span></span>
-                </li>
+        <li><h3>Rust</h3>
+          <span class="bar"><span class="c"></span></span>
+        </li>
 
-                <li><h3>x86 Assembly</h3>
-                    <span class="bar"><span class="c"></span></span>
-                </li>
+        <li><h3>x86-64 Intel Assembly</h3>
+          <span class="bar"><span class="c"></span></span>
+        </li>
 
-                <li><h3>JavaScript</h3>
-                    <span class="bar"><span class="js"></span></span>
-                </li>
+        <li><h3>JavaScript</h3>
+          <span class="bar"><span class="js"></span></span>
+        </li>
 
-                <li><h3>HTML & CSS</h3>
-                    <span class="bar"><span class="html"></span></span>
-                </li>
-            </div>
+        <li><h3>HTML & CSS</h3>
+          <span class="bar"><span class="html"></span></span>
+        </li>
+      </div>
 
-            <div id="about" class="content-section">
-                <header><b>About Me</b></header>
-                <p>
-                    Hi, my name is Austin Bachurski (I go by my middle name)
-                    and I began my self-taught journey into programming in
-                    January 2021, starting with C++ and Python. This followed a
-                    successful 18-year career in the automotive field, where I
-                    spent 4 years as a supervisor and 14 years as a mechanic.         
-                    <br><br>
-                    In January of 2021 I got a wild hare to try and learn
-                    programming again, when I was in my early teens I was
-                    gifted a "learn C++" book but I never got much past "Hello
-                    World!", so I decided I was going to try and learn C++ for
-                    real this time.  After a year of learning on my own I
-                    decided that it was something I wanted to pursue full time.
-                    In July of 2022 I transferred from the Mechanic Supervisor
-                    role to a Geographic Information System (GIS) role within
-                    my organization with the intent of increasing my exposure
-                    to the tech side of things.  This was a great boon to my
-                    learning as it allowed me to put my coding skills to use in
-                    a real-world scenario and gave me a good excuse to learn
-                    Python, as it's heavily used in GIS work.
-                    <br><br>
-                    In June of 2024 I enrolled with University of the People in
-                    a Bachelor of Science in Computer Science degree.  I'm
-                    currently sitting at 105/120 credits with a 4.0 GPA, and
-                    I'm on track to graduate late this year.  My hope is that
-                    with the additional knowledge gained from acquiring my
-                    degree, and the experience gained from a virtual internship,
-                    that I can finally complete my transition to a full-time
-                    software engineer.
-                </p>
-            </div>
+      <div id="about" class="content-section">
+        <header><b>About Me</b></header>
+        <p>
+        Hi, my name is Austin Bachurski (I go by my middle name) and I began my self-taught journey into programming in January 2021, starting with C++ and Python. This followed a successful 18-year career in the automotive field, where I spent 4 years as a supervisor and 14 years as a mechanic.         
+        <br><br>
+        In January of 2021 I got a wild hare to try and learn programming again, when I was in my early teens I was gifted a "learn C++" book but I never got much past "Hello World!", so I decided I was going to try and learn C++ for real this time.  After a year of learning on my own I decided that it was something I wanted to pursue full time. In July of 2022 I transferred from the Mechanic Supervisor role to a Geographic Information System (GIS) role within my organization with the intent of increasing my exposure to the tech side of things.  This was a great boon to my learning as it allowed me to put my coding skills to use in a real-world scenario and gave me a good excuse to learn Python, as it's heavily used in GIS work.
+        <br><br>
+        In June of 2024 I enrolled with University of the People in a Bachelor of Science in Computer Science degree.  I'm currently sitting at 105/120 credits with a 4.0 GPA, and I'm on track to graduate late this year.  My hope is that with the additional knowledge gained from acquiring my degree, and the experience gained from a virtual internship, that I can finally complete my transition to a full-time software engineer.
+        </p>
+      </div>
 
-            <div id="work-history" class="content-section">
-                <header><b>Work History</b></header>
-                <br><br>
+      <div id="work-history" class="content-section">
+        <header><b>Work History</b></header>
+        <br><br>
 
-                <b>GIS Specialist</b> 
-                - City of Kalispell, MT - IT Department
-                (July 2022 - Present)
-                <ul>
-                    <li>
-                        Developed a Portal Services Controller tool using 
-                        C++ and wxWidgets. The tool is used across our 
-                        department and makes everyone’s job faster and 
-                        easier, moving service control time from a manual 
-                        process taking 5 to 10 minutes, to a two-click 
-                        automated process requiring less than 2 minutes 
-                        to complete.
-                    </li>
-                    <li>
-                        Developed a command line utility using C++ and an 
-                        embedded Python environment to fully automate our 
-                        SQL database maintenance. This removed the need for 
-                        human intervention other than reading a brief event 
-                        log, which is conveniently emailed to GIS staff each 
-                        week.
-                    </li>
-                    <li>
-                        Developed a simple, step-by-step Crime Map Wizard 
-                        tool for our Police Department using C++ and 
-                        wxWidgets. Eliminating repetitive copy/paste work 
-                        which had previously led to frustration and 
-                        departure of the volunteers who perform this work.
-                    </li>
-                    <li>
-                        Automated a large portion of my daily workflow by 
-                        developing a C# tool with a WinForms UI. This tool 
-                        calls our Cityworks API to retrieve data and assist 
-                        in filtering/inserting the data to a spreadsheet.
-                    </li>
-                </ul>
-                <br>
+        <b>GIS Specialist</b> 
+        - City of Kalispell, MT - IT Department (July 2022 - Present)
+        <ul>
+          <li>
+            Developed a Portal Services Controller tool using C++ and wxWidgets. The tool is used across our department and makes everyone’s job faster and easier, moving service control time from a manual process taking 5 to 10 minutes, to a two-click automated process requiring less than 2 minutes to complete.
+          </li>
+          <li>
+            Developed a command line utility using C++ and an embedded Python environment to fully automate our SQL database maintenance. This removed the need for human intervention other than reading a brief event log, which is conveniently emailed to GIS staff each week.
+          </li>
+          <li>
+            Developed a simple, step-by-step Crime Map Wizard tool for our Police Department using C++ and wxWidgets. Eliminating repetitive copy/paste work which had previously led to frustration and departure of the volunteers who perform this work.
+          </li>
+          <li>
+            Automated a large portion of my daily workflow by developing a C# tool with a WinForms UI. This tool calls our Cityworks API to retrieve data and assist in filtering/inserting the data to a spreadsheet.
+          </li>
+        </ul>
+        <br>
 
-                <b>Software Test Engineer</b> 
-                - Cyanna Education Services LLC (June 2024 - January 2025)
-                <ul>
-                    <li>
-                        6 month contract for QA testing of curriculum 
-                        content and integration of automated testing and 
-                        grading with their "Vocareum" web based IDE sandbox.
-                    </li>
-                    <li>
-                        Responsible for reviewing course content, providing
-                        feedback, creating fix notes, creating GitHub
-                        issues for fixes, and administering fixes where 
-                        applicable.
-                    </li>
-                    <li>
-                        Wrote unit tests for curriculum content across
-                        multiple languages including: C, C#, Python, 
-                        JavaScript, TypeScript, and Bash.
-                    </li>
-                    <li>
-                        Contributed code for bug fixes and participated in the
-                        code review process.
-                    </li>
-                </ul>
-                <br>
+        <b>Software Test Engineer</b> 
+        - Cyanna Education Services LLC (June 2024 - January 2025)
+        <ul>
+          <li>
+            6 month contract for QA testing of curriculum content and integration of automated testing and grading with their "Vocareum" web based IDE sandbox.
+          </li>
+          <li>
+            Responsible for reviewing course content, providing feedback, creating fix notes, creating GitHub issues for fixes, and administering fixes where applicable.
+          </li>
+          <li>
+            Wrote unit tests for curriculum content across multiple languages including: C, C#, Python, JavaScript, TypeScript, and Bash.
+          </li>
+          <li>
+            Contributed code for bug fixes and participated in the code review process.
+          </li>
+        </ul>
+        <br>
 
-                <b>Central Garage Mechanic Supervisor</b> 
-                - City of Kalispell, MT - Public Works Department
-                (January 2018 - June 2022)
-                <ul>
-                    <li>
-                        Collaborated with the Road and Fleet Superintendent 
-                        and the Public Works Director to establish a 
-                        certification track for Level 1 and Level 2 
-                        positions for the facility employees. This 
-                        initiative provided additional benefits and 
-                        compensation incentives to employees who achieved 
-                        accreditation.
-                    </li>
-                    <li>
-                        My efforts in streamlining facility workflows led 
-                        to an average increase in work orders of 34%, and 
-                        an increase in billable hours of 18% over my 4-year 
-                        tenure as supervisor as compared to the 4 years 
-                        prior.
-                    </li>
-                </ul>
-                <br>
+        <b>Central Garage Mechanic Supervisor</b> 
+        - City of Kalispell, MT - Public Works Department (January 2018 - June 2022)
+        <ul>
+          <li>
+            Collaborated with the Road and Fleet Superintendent and the Public Works Director to establish a certification track for Level 1 and Level 2 positions for the facility employees. This initiative provided additional benefits and compensation incentives to employees who achieved accreditation.
+          </li>
+          <li>
+            My efforts in streamlining facility workflows led to an average increase in work orders of 34%, and an increase in billable hours of 18% over my 4-year tenure as supervisor as compared to the 4 years prior.
+          </li>
+        </ul>
+        <br>
 
-                <b>Central Garage Fleet Mechanic</b> 
-                - City of Kalispell, MT - Public Works Department
-                (May 2014 - January 2018)
-                <ul>
-                    <li>
-                        Maintained vehicles and equipment for the organization,
-                        implemented in-house upfitting of police vehicles,
-                        completing several complete buildouts during tenure.
-                    </li>
-                    <li>
-                        Promoted to Fleet Maintenance Supervisor in January 2018.
-                    </li>
-                </ul>
-                <br>
+        <b>Central Garage Fleet Mechanic</b> 
+        - City of Kalispell, MT - Public Works Department (May 2014 - January 2018)
+        <ul>
+          <li>
+            Maintained vehicles and equipment for the organization, implemented in-house upfitting of police vehicles, completing several complete buildouts during tenure.
+          </li>
+          <li>
+            Promoted to Fleet Maintenance Supervisor in January 2018.
+          </li>
+        </ul>
+        <br>
 
-            </div>
+      </div>
 
-            <div id="projects" class="content-section">
-                <header><b>Projects</b></header>
+      <div id="projects" class="content-section">
+        <header><b>Projects</b></header>
 
-                <div class="project-title">
-                    <p><img src="pictures/c.png"/>
-                        &nbsp&nbsp<b>Tetris Clone</b></p>
-                </div>
-                <div class="project-content">
-                    <img src="pictures/tetris.png"
-                        alt="Screenshot of the game."/>
-                    <div class="description">
-                        <p>
-                            A Tetris clone that runs in the terminal, written in
-                            C using ncurses.
-                            <br><br>
-                            I wanted to improve my C skills, as well as practice
-                            GDB, so I wrote this Tetris clone that runs in the 
-                            terminal using C and the ncurses library for the ui.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/Tetris')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/cpp.png"/>
-                        &nbsp&nbsp<b>Advent of Code 2024</b></p>
-                </div>
-                <div class="project-content">
-                    <img src="https://raw.githubusercontent.com/AustinBachurski/Advent-of-Code-2024/refs/heads/main/screenshots/aoc2024.png"
-                        alt="Screenshot of AoC calendar."/>
-                    <div class="description">
-                        <p>
-                            Collection of my solutions to the 2024 Advent of
-                            Code.
-                            <br><br>
-                            Mostly C++, with a bit of experimentation with Rust.
-                            I had a ton of fun and learned a lot as I went
-                            through each day. I've been able to complete all
-                            the part one puzzles by myself so far, but some part
-                            two problems stumped me and I had to look at what
-                            other participants were doing to solve the puzzle.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/Advent-of-Code-2024')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/cpp.png"/>
-                        &nbsp&nbsp<b>Five-Function Calculator</b></p>
-                </div>
-                <div class="project-content">
-                    <img src="pictures/calculator.png"
-                        alt="Screenshot of calculator in action."/>
-                    <div class="description">
-                        <p>
-                            Expression evaluator calculator that parses percent,
-                            addition, subtraction, multiplication, and division
-                            using the "Shunting Yard" algorithm.
-                            <br><br>
-                            The calculator outputs information about every
-                            decision that was made during evaluation to a
-                            "Trace Tab" as well as generates a "trace file"
-                            containing said output. This was a take home
-                            project for a company I interviewed with back in
-                            January of 2024. The specification is in the
-                            repository, and the project had to be completed in
-                            one week.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/Five-Function-Calculator')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/cpp.png"/>
-                        &nbsp&nbsp<b>Doubly Linked List Implementation</b></p>
-                </div>
-                <div class="project-content">
-                    <img src="pictures/dsa.png"
-                        alt="Screenshot of controller in action."/>
-                    <div class="description">
-                        <p>
-                            Repo for storing some data structures and algorithms 
-                            implementation attempts.
-                            <br><br>
-                            Currently only has an implementation of a std::list
-                            from the C++ Standard Library. Not exactly true to
-                            the original but I learned a lot implementing this.
-                            Constructors and destructors for the list as well as
-                            the list nodes print information to the console to
-                            show what's taking place as nodes are created and
-                            destroyed. The list features a forward iterator, 5
-                            insertion methods, 4 removal methods, 3 capacity
-                            methods, and 3 element access methods.  I included
-                            operator[] as well as a constructors taking a value
-                            or a std::initializer_list for learning purposes.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/DSA-Learning')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/cpp.png"/>
-                        &nbsp&nbsp<b>Services Controller 
-                            for Esri Enterprise Portal</b></p>
-                </div>
-                <div class="project-content">
-                    <img src="pictures/psc.png"
-                        alt="Screenshot of controller in action."/>
-                    <div class="description">
-                        <p>
-                            This application provides a simple interface that
-                            allows users to quickly view and control the state
-                            of services on an Esri Enterprise Portal Server.
-                            <br><br>
-                            The directory, name, type, and state of every service 
-                            on the server can be viewed via an easy-to-understand 
-                            context menu and selectable text frame. Users can start 
-                            or stop all services at once with a couple clicks of 
-                            the top menu bar, allowing server maintenance tasks or 
-                            service modifications to be performed without wasting 
-                            time clicking stop or start on dozens of services using 
-                            ArcGIS Server Manager, or manually maintaining a long 
-                            list of services in JSON format using ArcGIS Server 
-                            Administrator Directory.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/Enterprise-Portal-Services-Controller-GUI')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/cpp.png"/>
-                        <img src="pictures/python.png"/>
-                        &nbsp&nbsp<b>Crime Map Update Wizard</b></p>
-                </div>
-                <div class="project-content">
-                <img src="pictures/wizard.png"
-                    alt="Screenshot of the wizard."/>
-                <div class="description">
-                    <p>
-                        This tool was written to help the volunteers at the 
-                        Kalispell Police Department update the Kalispell
-                        Crime Heatmap quickly and easily, no more
-                        copy/pasting in Excel, and no need to open ArcGIS
-                        Pro.
-                        <br><br>
-                        Crime Map Wizard is a newer version of the Crime Map 
-                        Update Assistant (previously written in Python) that
-                        provides a graphical wizard with the previous three
-                        geoprocessing scripts improved and condensed into a
-                        single script. The user interface and Excel parser
-                        is written in C++ using wxWidgets, and the 
-                        geoprocessing script is written in Python using the 
-                        ArcGIS ArcPy module.
-                    </p>
-                    <div class="link">
-                        <button class="view-code" type="button" 
-                            onclick="window.open('https://github.com/AustinBachurski/Crime-Map-Wizard')">
-                            View the Code on GitHub</button>
-                    </div>
-                </div>
-            </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/cpp.png"/>
-                        &nbsp&nbsp<b>Building Permit Parser</b></p>
-                </div>
-                <div class="project-content">
-                    <img src="pictures/parser.png"
-                        alt="Screenshot of the parser."/>
-                    <div class="description">
-                        <p>
-                            Spreadsheet parsing tool to help make work easier
-                            for my coworkers in the Building Department.
-                            <br><br>
-                            The tool parses out building permit information from a
-                            tracking spreadsheet to quickly provide totals for
-                            yearend reports. The tool automatically loads and parses
-                            the sheet for the previous calendar year and displays
-                            the information to the user. A "Copy" button near each
-                            displayed value loads the information into the operating
-                            system clipboard so it can be easily pasted into a
-                            report document with minimal effort required by the
-                            user. I submitted this as the final project for the
-                            Udacity C++ Nanodegree course.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/BuildingPermitParser')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/csharp.png"/>
-                        &nbsp&nbsp<b>Law Enforcement Warrant Generator</b></p>
-                </div>
-                <div class="project-content">
-                    <img src="pictures/warrantgenerator.png"
-                        alt="Screenshot of the application."/>
-                    <div class="description">
-                        <p>
-                            Document generator application that produces search 
-                            warrant documents in .docx format for law 
-                            enforcement, written in C# using AvaloniaUI. 
-                            <br><br>
-                            This application was written to aid my police 
-                            department in generating search warrants.  It allows
-                            the officer to simply enter in the pertinent information 
-                            for the warrant and avoid having to type out a bunch
-                            of boilerplate, or risk incorrect data being included 
-                            where content was copy/pasted from previous search warrants.
-                            The tool can produce both the Search Warrant Application
-                            document and the Search Warrant document itself for 
-                            many of the common warrants that are issued.  This 
-                            greatly reduces wait time for the warrant to be issued,
-                            especially in the case of a barricaded suspect.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/Warrant-Generator')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/csharp.png"/>
-                        &nbsp&nbsp<b>Battleship Game</b></p>
-                </div>
-                <div class="project-content">
-                    <img src="pictures/battleship.png"
-                        alt="Screenshot of the game board."/>
-                    <div class="description">
-                        <p>
-                            Console clone of the Battleship board game, written in
-                            C#. Capstone Project for the Skill Foundry 
-                            "Object-Oriented Programming in C#" course.
-                            <br><br>
-                            Contains unit tests for game and score functions,
-                            capable of player vs player, player vs computer, or
-                            computer vs computer battle. This was my first
-                            attempt at a game and the capstone project for the
-                            Skill Foundry C# 200 series course.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/Battleship-Game')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/csharp.png"/>
-                        &nbsp&nbsp<b>Building Permit Monitor</b></p>
-                </div>
-                <div class="project-content-horizontal">
-                    <img src="pictures/monitor.png"
-                        alt="Screenshot of the parser."/>
-                    <div class="description">
-                        <p>
-                            A simple system tray/notification area application
-                            that monitors a database for newly issued building
-                            permits.
-                            <br><br>
-                            This tool was written to assist in tracking and
-                            mapping building permit data. The UI is a bit
-                            strange at first glance - I wanted something compact
-                            that could live in/around the notification area. I
-                            get a popup notification from the tool when there's
-                            a new permit to record. Clicking the notification 
-                            spawns the validation window, just above the task
-                            bar that allows the information for the permit to be
-                            reviewed at a glance rather than digging through the
-                            permit submission to find what I need.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/Building-Permit-Monitor')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><hr><br>
-
-                <div class="project-title">
-                    <p><img src="pictures/python.png"/>
-                        &nbsp&nbsp<b>Mailer Generator</b></p>
-                </div>
-                <div class="project-content-horizontal">
-                    <img src="pictures/mailer.png"
-                        alt="Screenshot of the parser."/>
-                    <div class="description">
-                        <p>
-                            Automatically generates a mailing list and
-                            accompanying map for a given address, assessor
-                            number, or tract id.
-                            <br><br>
-                            Generating mailing lists and maps is something that
-                            I previously did manually with GIS software.
-                            Automating most of the process allows me to produce
-                            the required map and mailing list in less than 2
-                            minutes of receiving an emailed request.
-                        </p>
-                        <div class="link">
-                            <button class="view-code" type="button" 
-                                onclick="window.open('https://github.com/AustinBachurski/MailerGenerator')">
-                                View the Code on GitHub</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="blog" class="content-section blog-container">
-                <!-- Dynamically Loaded -->
-            </div>
-
-
-            <div id="links" class="content-section">
-                <header><b>Links</b></header>
-                <br><br>
-                <a href="https://www.linkedin.com/in/josephabachurski/"
-                    target="_blank" rel="noopener noreferrer">
-                    <button class="social-links" type="button">
-                        <b>Linkedin Profile</b>
-                    </button>
-                </a>
-                <br><br><br>
-                <a href="https://github.com/AustinBachurski"
-                    target="_blank" rel="noopener noreferrer">
-                    <button class="social-links" type="button">
-                        <b>GitHub Profile</b>
-                    </button>
-                </a>
-                <br><br><br>
-                <a href="https://verify.openedg.org/?id=7SqB.R79H.Yo0V"
-                    target="_blank" rel="noopener noreferrer">
-                    <button class="social-links" type="button">
-                        <b>C++ Certified Entry-Level Programmer Credential</b>
-                    </button>
-                <br><br><br>
-                <a href="https://www.coursera.org/account/accomplishments/specialization/TQLY9BZWXI50"
-                    target="_blank" rel="noopener noreferrer">
-                    <button class="social-links" type="button">
-                        <b>Google Cybersecurity Professional Credential</b>
-                    </button>
-                <br><br><br>
-                <a href="https://www.credly.com/badges/6798bbca-3082-4999-bf82-27cddd55d436/public_url"
-                    target="_blank" rel="noopener noreferrer">
-                    <button class="social-links" type="button">
-                        <b>IBM Data Engineering Professional Credential</b>
-                    </button>
-                    <br><br><br>
-                    <a href="https://drive.google.com/file/d/1OAT0VtrwktfEXaKvk5Xhd3CRHndYbByX/view"
-                        target="_blank" rel="noopener noreferrer">
-                        <button class="social-links" type="button">
-                            <b>Resume</b>
-                        </button>
-                    </a>
-                    <br><br><br>
-                    <a href="mailto:austinbachurski@gmail.com">
-                        <button class="social-links" type="button">
-                            <b>Send me an E-mail</b>
-                        </button>
-                    </a>
-                    <br><br>
-            </div>
-
+        <div class="project-title">
+          <p><img src="pictures/cpp.png"/>
+          &nbsp&nbsp<b>C++ Reflection based Utilities</b></p>
         </div>
-    </body>
+        <div class="project-content">
+          <img src="pictures/reflection.png"
+          alt="Screenshot of some example output."/>
+          <div class="description">
+            <p>
+            Learning C++26 reflection and trying to make some useful utilities.
+            <br><br>
+            With C++26 bringing static reflection into the standard I wanted to play with it and learn it. Implemented the usual printers and also came up with a way to check casting integers to enums to ensure they are valid - which the compiler does not currently do.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Reflection-Utilities')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/c.png"/>
+          &nbsp&nbsp<b>Tetris Clone</b></p>
+        </div>
+        <div class="project-content">
+          <img src="pictures/tetris.png"
+          alt="Screenshot of the game."/>
+          <div class="description">
+            <p>
+            A Tetris clone that runs in the terminal, written in C using ncurses.
+            <br><br>
+            I wanted to improve my C skills, as well as practice GDB, so I wrote this Tetris clone that runs in the terminal using C and the ncurses library for the ui.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Tetris')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/cpp.png"/>
+          &nbsp&nbsp<b>Advent of Code 2024</b></p>
+        </div>
+        <div class="project-content">
+          <img src="https://raw.githubusercontent.com/AustinBachurski/Advent-of-Code-2024/refs/heads/main/screenshots/aoc2024.png"
+          alt="Screenshot of AoC calendar."/>
+          <div class="description">
+            <p>
+            Collection of my solutions to the 2024 Advent of Code.
+            <br><br>
+            Mostly C++, with a bit of experimentation with Rust. I had a ton of fun and learned a lot as I went through each day. I've been able to complete all the part one puzzles by myself so far, but some part two problems stumped me and I had to look at what other participants were doing to solve the puzzle.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Advent-of-Code-2024')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/cpp.png"/>
+          &nbsp&nbsp<b>Five-Function Calculator</b></p>
+        </div>
+        <div class="project-content">
+          <img src="pictures/calculator.png"
+          alt="Screenshot of calculator in action."/>
+          <div class="description">
+            <p>
+            Expression evaluator calculator that parses percent, addition, subtraction, multiplication, and division using the "Shunting Yard" algorithm.
+            <br><br>
+            The calculator outputs information about every decision that was made during evaluation to a "Trace Tab" as well as generates a "trace file" containing said output. This was a take home project for a company I interviewed with back in January of 2024. The specification is in the repository, and the project had to be completed in one week.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Five-Function-Calculator')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/cpp.png"/>
+          &nbsp&nbsp<b>Doubly Linked List Implementation</b></p>
+        </div>
+        <div class="project-content">
+          <img src="pictures/dsa.png"
+          alt="Screenshot of controller in action."/>
+          <div class="description">
+            <p>
+            Repo for storing some data structures and algorithms implementation attempts.
+            <br><br>
+            Currently only has an implementation of a std::list from the C++ Standard Library. Not exactly true to the original but I learned a lot implementing this. Constructors and destructors for the list as well as the list nodes print information to the console to show what's taking place as nodes are created and destroyed. The list features a forward iterator, 5 insertion methods, 4 removal methods, 3 capacity methods, and 3 element access methods.  I included operator[] as well as a constructors taking a value or a std::initializer_list for learning purposes.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/DSA-Learning')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/cpp.png"/>
+          &nbsp&nbsp<b>Services Controller 
+            for Esri Enterprise Portal</b></p>
+        </div>
+        <div class="project-content">
+          <img src="pictures/psc.png"
+          alt="Screenshot of controller in action."/>
+          <div class="description">
+            <p>
+            This application provides a simple interface that allows users to quickly view and control the state of services on an Esri Enterprise Portal Server.
+            <br><br>
+            The directory, name, type, and state of every service on the server can be viewed via an easy-to-understand context menu and selectable text frame. Users can start or stop all services at once with a couple clicks of the top menu bar, allowing server maintenance tasks or service modifications to be performed without wasting time clicking stop or start on dozens of services using ArcGIS Server Manager, or manually maintaining a long list of services in JSON format using ArcGIS Server Administrator Directory.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Enterprise-Portal-Services-Controller-GUI')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/cpp.png"/>
+          <img src="pictures/python.png"/>
+          &nbsp&nbsp<b>Crime Map Update Wizard</b></p>
+        </div>
+        <div class="project-content">
+          <img src="pictures/wizard.png"
+          alt="Screenshot of the wizard."/>
+          <div class="description">
+            <p>
+            This tool was written to help the volunteers at the Kalispell Police Department update the Kalispell Crime Heatmap quickly and easily, no more copy/pasting in Excel, and no need to open ArcGIS Pro.
+            <br><br>
+            Crime Map Wizard is a newer version of the Crime Map Update Assistant (previously written in Python) that provides a graphical wizard with the previous three geoprocessing scripts improved and condensed into a single script. The user interface and Excel parser is written in C++ using wxWidgets, and the geoprocessing script is written in Python using the ArcGIS ArcPy module.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Crime-Map-Wizard')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/cpp.png"/>
+          &nbsp&nbsp<b>Building Permit Parser</b></p>
+        </div>
+        <div class="project-content">
+          <img src="pictures/parser.png"
+          alt="Screenshot of the parser."/>
+          <div class="description">
+            <p>
+            Spreadsheet parsing tool to help make work easier for my coworkers in the Building Department.
+            <br><br>
+            The tool parses out building permit information from a tracking spreadsheet to quickly provide totals for yearend reports. The tool automatically loads and parses the sheet for the previous calendar year and displays the information to the user. A "Copy" button near each displayed value loads the information into the operating system clipboard so it can be easily pasted into a report document with minimal effort required by the user. I submitted this as the final project for the Udacity C++ Nanodegree course.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/BuildingPermitParser')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/csharp.png"/>
+          &nbsp&nbsp<b>Law Enforcement Warrant Generator</b></p>
+        </div>
+        <div class="project-content">
+          <img src="pictures/warrantgenerator.png"
+          alt="Screenshot of the application."/>
+          <div class="description">
+            <p>
+            Document generator application that produces search warrant documents in .docx format for law enforcement, written in C# using AvaloniaUI. 
+            <br><br>
+            This application was written to aid my police department in generating search warrants.  It allows the officer to simply enter in the pertinent information for the warrant and avoid having to type out a bunch of boilerplate, or risk incorrect data being included where content was copy/pasted from previous search warrants. The tool can produce both the Search Warrant Application document and the Search Warrant document itself for many of the common warrants that are issued.  This greatly reduces wait time for the warrant to be issued, especially in the case of a barricaded suspect.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Warrant-Generator')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/csharp.png"/>
+          &nbsp&nbsp<b>Battleship Game</b></p>
+        </div>
+        <div class="project-content">
+          <img src="pictures/battleship.png"
+          alt="Screenshot of the game board."/>
+          <div class="description">
+            <p>
+            Console clone of the Battleship board game, written in C#. Capstone Project for the Skill Foundry "Object-Oriented Programming in C#" course.
+            <br><br>
+            Contains unit tests for game and score functions, capable of player vs player, player vs computer, or computer vs computer battle. This was my first attempt at a game and the capstone project for the Skill Foundry C# 200 series course.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Battleship-Game')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/csharp.png"/>
+          &nbsp&nbsp<b>Building Permit Monitor</b></p>
+        </div>
+        <div class="project-content-horizontal">
+          <img src="pictures/monitor.png"
+          alt="Screenshot of the parser."/>
+          <div class="description">
+            <p>
+            A simple system tray/notification area application that monitors a database for newly issued building permits.
+            <br><br>
+            This tool was written to assist in tracking and mapping building permit data. The UI is a bit strange at first glance - I wanted something compact that could live in/around the notification area. I get a popup notification from the tool when there's a new permit to record. Clicking the notification spawns the validation window, just above the task bar that allows the information for the permit to be reviewed at a glance rather than digging through the permit submission to find what I need.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/Building-Permit-Monitor')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><hr><br>
+
+        <div class="project-title">
+          <p><img src="pictures/python.png"/>
+          &nbsp&nbsp<b>Mailer Generator</b></p>
+        </div>
+        <div class="project-content-horizontal">
+          <img src="pictures/mailer.png"
+          alt="Screenshot of the parser."/>
+          <div class="description">
+            <p>
+            Automatically generates a mailing list and accompanying map for a given address, assessor number, or tract id.
+            <br><br>
+            Generating mailing lists and maps is something that I previously did manually with GIS software. Automating most of the process allows me to produce the required map and mailing list in less than 2 minutes of receiving an emailed request.
+            </p>
+            <div class="link">
+              <button class="view-code" type="button" 
+                onclick="window.open('https://github.com/AustinBachurski/MailerGenerator')">
+                View the Code on GitHub</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="blog" class="content-section blog-container">
+        <!-- Dynamically Loaded -->
+      </div>
+
+
+      <div id="links" class="content-section">
+        <header><b>Links</b></header>
+        <br><br>
+        <a href="https://www.linkedin.com/in/josephabachurski/"
+          target="_blank" rel="noopener noreferrer">
+          <button class="social-links" type="button">
+            <b>Linkedin Profile</b>
+          </button>
+        </a>
+        <br><br><br>
+        <a href="https://github.com/AustinBachurski"
+          target="_blank" rel="noopener noreferrer">
+          <button class="social-links" type="button">
+            <b>GitHub Profile</b>
+          </button>
+        </a>
+        <br><br><br>
+        <a href="https://verify.openedg.org/?id=7SqB.R79H.Yo0V"
+          target="_blank" rel="noopener noreferrer">
+          <button class="social-links" type="button">
+            <b>C++ Certified Entry-Level Programmer Credential</b>
+          </button>
+          <br><br><br>
+          <a href="https://www.coursera.org/account/accomplishments/specialization/TQLY9BZWXI50"
+            target="_blank" rel="noopener noreferrer">
+            <button class="social-links" type="button">
+              <b>Google Cybersecurity Professional Credential</b>
+            </button>
+            <br><br><br>
+            <a href="https://www.credly.com/badges/6798bbca-3082-4999-bf82-27cddd55d436/public_url"
+              target="_blank" rel="noopener noreferrer">
+              <button class="social-links" type="button">
+                <b>IBM Data Engineering Professional Credential</b>
+              </button>
+              <br><br><br>
+              <a href="https://drive.google.com/file/d/1OAT0VtrwktfEXaKvk5Xhd3CRHndYbByX/view"
+                target="_blank" rel="noopener noreferrer">
+                <button class="social-links" type="button">
+                  <b>Resume</b>
+                </button>
+              </a>
+              <br><br><br>
+              <a href="mailto:austinbachurski@gmail.com">
+                <button class="social-links" type="button">
+                  <b>Send me an E-mail</b>
+                </button>
+              </a>
+              <br><br>
+      </div>
+    </div>
+  </body>
 </html>
