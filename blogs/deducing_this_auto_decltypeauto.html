@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <button id="back-to-blogs"> < Back to Blogs </button>
+    <h1>Deducing this, auto, & decltype(auto)</h1>
+    <h3>Recent learnings from using deducing this in a Vector implementation.</h3>
+
+    <br>
+
+    <h4>Deducing this</h4>
+    <p>Deducing <code>this</code> allows your methods to determine the constness of <code>this</code> to reduce code duplication for things like <code>.at()</code>. Use <code>template <typename Self></code> and include the first parameter <code>this Self &&self</code>. Since we're deducing constness, the method cannot be marked as <code>const</code>. Must consider the return type deduction rules if using <code>auto</code>!</p>
+
+    <br><br>
+
+    <h4>auto-returning Functions</h4>
+    <p><code>auto</code> discards references and top-level cv-qualifiers and references, meaning:</p>
+
+    <pre><code class="language-cpp">
+auto func() { 
+  static constexpr auto value{42};
+  int const *const x{&value};
+  return x; // The return type of func is `int const *`!
+}
+
+auto ref_func() {
+  static constexpr auto value{42};
+  const int &x{value};
+  return x; // The return type of ref_func is `int`!
+}
+    </code></pre>
+
+    <p>See template type deduction rules and <code>std::decay</code> - the member typedef type is <code>std::remove_cv&ltstd::remove_reference&ltT&gt::type&gt::type</code>.</p>
+
+    <p>Also see standards draft [expr.type]</p>
+    <ul>
+      <li>
+        <i>If an expression initially has the type reference to `T` ([dcl.ref], [dcl.init.ref]), the type is adjusted to `T` prior to any further analysis; the value category of the expression is not altered.  Let `X` be the object or function denoted by the reference.  If a pointer to `X` would be valid in the context of the evaluation of the expression ([basic.fundamental]), the result designates `X`; otherwise, the behavior is undefined.</i>
+      </li>
+    </ul>
+
+    <p>If you need the reference and/or the cv-qualifiers to be retained, use a return type of <code>decltype(auto)</code>.</p>
+
+    <br><br>
+
+    <h4>decltype(auto)</h4>
+    <p>Defining the return value of a function as <code>decltype(auto)</code> will deduce the type with reference and cv-qualifiers.</p>
+
+    <pre><code class="language-cpp">
+  template &lttypename Self&gt
+  [[nodiscard]] constexpr auto at(this Self &&self, size_type position)
+      -&gt decltype(auto) {
+    if (position &gt= self.size_) {
+      throw std::out_of_range(
+          std::format("Vector Range Check: position (which is {}) &gt= "
+                      "this-&gtsize() (which is {})",
+                      position, self.size_));
+    }
+    return std::forward_like&ltSelf&gt(self.data_[position]);
+  }
+    </code></pre>
+
+    <p><strong>Just remember that <code>std::forward_like</code> returns a reference!</strong></p>
+
+    <ul>
+      <li>if the value category of expression is xvalue, then decltype yields <code>T&&</code>.</li>
+      <li>if the value category of expression is lvalue, then decltype yields <code>T&</code>.</li>
+      <li>if the value category of expression is prvalue, then decltype yields <code>T</code>.</li>
+    </ul>
+
+    <p>Note that if the name of an object is parenthesized, it is treated as an ordinary lvalue expression, thus <code>decltype(x)</code> and <code>decltype((x))</code> are often different types.</p>
+    <p>Remember the bit about a reference type being adjusted to <code>T</code> prior to any further analysis?  Wrapping something in <code>()</code> makes it an expression.</p>
+
+  </body>
+</html>
+
