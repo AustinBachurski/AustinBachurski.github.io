@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <button id="back-to-blogs"> < Back to Blogs </button>
+    <h1>C++ Iterator Notes</h1>
+    <h3>Recent learnings from implementing a contiguous iterator for my Vector project.</h3>
+
+    <br>
+
+    <h4>Template</h4>
+    <p><code>std::iterator_category<I></code> is the concept taking your iterator as template parameter <code>I</code>, where as <code>std::iterator_category_tag</code> is the iterator trait tag.</p>
+    <ul>
+      <li>Replace `:TYPE:` with the iterable container.</li>
+      <li>Replace `:ITERATOR_CATEGORY:` with the `std::iterator_category` listed below.</li>
+    </ul>
+
+    <pre><code class="language-cpp">
+export template &lttypename T&gt class :TYPE:Iterator {
+public:
+  // Iterator Traits
+  using iterator_category = std:::ITERATOR_CATEGORY:_tag;
+  using value_type = std::remove_cv_t&ltT&gt;
+  using difference_type = std::ptrdiff_t;
+  using pointer = T *;
+  using reference = T &;
+
+  constexpr :TYPE:Iterator() = default;
+  constexpr explicit :TYPE:Iterator(pointer ptr) : ptr_{ptr} {}
+
+private:
+  pointer ptr_{};
+};
+
+// Ensures that the iterator meets the
+// requirements for the appropriate iterator tag.
+static_assert(std:::ITERATOR_CATEGORY:&lt:TYPE:Iterator&ltint&gt&gt);
+    </code></pre>
+
+    <br><br>
+
+    <h4>Iterator Categories</h4>
+    <p>Each tag adds further requirements that build on the lesser tags.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Iterator</th>
+          <th>Operators</th>
+          <th>Details</th>
+        </tr>
+        <tr>
+          <td><code>input_or_output_iterator</code></td>
+          <td><code>++</code>, <code>*</code></td>
+          <td>The <code>input_or_output_iterator</code> concept forms the basis of the iterator concept taxonomy; every iterator type satisfies the <code>input_or_output_iterator</code> requirements.</td>
+        </tr>
+        <tr>
+          <td><code>input_iterator</code></td>
+          <td><code>++</code>, <code>*</code></td>
+          <td>The <code>input_iterator</code> concept is a refinement of <code>input_or_output_iterator</code>, adding the requirement that the referenced values can be read (via <code>indirectly_readable</code>) and the requirement that the iterator concept tag be present. <strong>Clarification:</strong> <i><code>input_or_output_iterator</code> doesn't require <code>operator*</code> to be readable (think <code>std::back_inserter</code>), where as <code>input_iterator</code> requires readable.</i></td>
+        </tr>
+        <tr>
+          <td><code>forward_iterator</code></td>
+          <td><code>++</code>, <code>*</code>, <code>==</code></td>
+          <td>This concept refines <code>input_iterator</code> by requiring that the iterator also models <code>incrementable</code> (thereby making it suitable for multi-pass algorithms), and guaranteeing that two iterators to the same range can be compared against each other. <strong>Clarification:</strong> <i>revious iterators modeled <code>weakly_incrementable</code> which does not guarantee that two copies of an iterator <code>a</code> and <code>b</code> will be equal if they are both incremented (think of a stream).</i> </td>
+        </tr>
+        <tr>
+          <td><code>bidirectional_iterator</code></td>
+          <td><code>++</code>, <code>*</code>, <code>==</code>, <code>--</code></td>
+          <td>The concept <code>bidirectional_iterator</code> refines <code>forward_iterator</code> by adding the ability to move an iterator backward. </td>
+        </tr>
+        <tr>
+          <td><code>random_access_iterator</code></td>
+          <td><code>++</code>, <code>*</code>, <code>==</code>, <code>--</code>, <code>+=</code>, <code>-=</code>, <code>+</code>, <code>-</code>, <code>[]</code></td>
+          <td>The concept <code>random_access_iterator</code> refines <code>bidirectional_iterator</code> by adding support for constant time advancement with the +=, +, -=, and - operators, constant time computation of distance with -, and array notation with subscripting []. <strong>Clarification:</strong> <i>see the concept below, spells it out very clearly.</i> </td>
+        </tr>
+        <tr>
+          <td><code>contiguous_iterator</code></td>
+          <td><code>++</code>, <code>*</code>, <code>==</code>, <code>--</code>, <code>+=</code>, <code>-=</code>, <code>+</code>, <code>-</code>, <code>[]</code></td>
+          <td>The <code>contiguous_iterator</code> concept refines <code>random_access_iterator</code> by providing a guarantee that the denoted elements are stored contiguously in the memory. </td>
+        </tr>
+      </thead>
+    </table>
+
+    <br><br>
+
+    <h4>Concept for <code>std::random_access_iterator</code></h4>
+    <pre><code class="language-cpp">
+template&lt class I &gt
+    concept random_access_iterator =
+        std::bidirectional_iterator&ltI&gt &&
+        std::derived_from&lt/*ITER_CONCEPT*/&ltI&gt, std::random_access_iterator_tag&gt &&
+        std::totally_ordered&ltI&gt &&
+        std::sized_sentinel_for&ltI, I&gt &&
+        requires(I i, const I j, const std::iter_difference_t&ltI&gt n) {
+            { i += n } -&gt std::same_as&ltI&&gt;
+            { j +  n } -&gt std::same_as&ltI&gt;
+            { n +  j } -&gt std::same_as&ltI&gt;
+            { i -= n } -&gt std::same_as&ltI&&gt;
+            { j -  n } -&gt std::same_as&ltI&gt;
+            {  j[n]  } -&gt std::same_as&ltstd::iter_reference_t&ltI&gt&gt;
+            // Clarification on operator[]: std::iter_reference_t&ltI&gt isn't
+            // talking about the iterator itself, it's expecting a reference to
+            // `T`, so j[n] should return the same type as the `reference`
+            // typedef at the top of your iterator class.
+    </code></pre>
+  </body>
+</html>
+
