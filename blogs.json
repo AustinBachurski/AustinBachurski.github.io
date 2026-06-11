@@ -1,5 +1,13 @@
 [
     {
+        "title": "Deducing This, auto, and decltype(auto)",
+        "file": "blogs/deducing_this_auto_decltypeauto.html"
+    },
+    {
+        "title": "C++ Iterator Notes",
+        "file": "blogs/cpp_iterators.html"
+    },
+    {
         "title": "Address Sanitizer is not Infallible",
         "file": "blogs/byte_ordering_and_asan.html"
     },

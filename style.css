@@ -461,6 +461,24 @@ nav a:hover {
     display: block;
 }
 
+table {
+    display: table !important;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+tr {
+    display: table-row !important;
+}
+
+th, td {
+    display: table-cell !important;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--accent-color);
+}
+
 li {
     margin: 10px;
 }
