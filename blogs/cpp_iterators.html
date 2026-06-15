@@ -59,8 +59,8 @@ static_assert(std:::ITERATOR_CATEGORY:&lt:TYPE:Iterator&ltint&gt&gt);
         </tr>
         <tr>
           <td><code>input_iterator</code></td>
-          <td><code>++</code>, <code>*</code></td>
-          <td>The <code>input_iterator</code> concept is a refinement of <code>input_or_output_iterator</code>, adding the requirement that the referenced values can be read (via <code>indirectly_readable</code>) and the requirement that the iterator concept tag be present. <strong>Clarification:</strong> <i><code>input_or_output_iterator</code> doesn't require <code>operator*</code> to be readable (think <code>std::back_inserter</code>), where as <code>input_iterator</code> requires readable.</i></td>
+          <td><code>++</code>, <code>*</code>, <code>See_IMPORTANT>></code></td>
+          <td>The <code>input_iterator</code> concept is a refinement of <code>input_or_output_iterator</code>, adding the requirement that the referenced values can be read (via <code>indirectly_readable</code>) and the requirement that the iterator concept tag be present. <strong>Clarification:</strong> <i><code>input_or_output_iterator</code> doesn't require <code>operator*</code> to be readable (think <code>std::back_inserter</code>), where as <code>input_iterator</code> requires readable.</i>  <strong>IMPORTANT:</strong> Although input_iterator is not required to be comparable via <code>operator==</code>, it can be compared to a sentinel value.  As such, when taking them as input parameters, have <code>begin</code> be <code>std::input_iterator InputIterator</code> and <code>end</code> be <code>std::sentinel_for<InputIterator> Sentinel</code> - ranges require this.  Remember that you can use the concept in place of <code>typename</code>. </td>
         </tr>
         <tr>
           <td><code>forward_iterator</code></td>
