@@ -36,7 +36,7 @@
     </ul>
 
     <pre><code class="language-cpp">
-if constexpr (std::allocator_traits<Allocator>::
+if constexpr (std::allocator_traits&ltAllocator&gt::
                   propagate_on_container_copy_assignment::value) {
   // If propagate is true, we must copy the allocator from source to 
   // destination.
@@ -85,7 +85,7 @@ if constexpr (std::allocator_traits<Allocator>::
     </ul>
 
     <pre><code class="language-cpp">
-if constexpr (std::allocator_traits<Allocator>::
+if constexpr (std::allocator_traits&ltAllocator&gt::
                   propagate_on_container_move_assignment::value) {
   // If propagate is true, we must move the allocator from source to
   // destination.  Simply move the allocator along with everything else from
