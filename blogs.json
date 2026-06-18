@@ -1,5 +1,9 @@
 [
     {
+        "title": "Allocator Comparison & Propagation",
+        "file": "blogs/allocator-comparison-propagation.html"
+    },
+    {
         "title": "Deducing This, auto, and decltype(auto)",
         "file": "blogs/deducing_this_auto_decltypeauto.html"
     },
