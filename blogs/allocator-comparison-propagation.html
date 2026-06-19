@@ -126,6 +126,37 @@ if constexpr (std::allocator_traits&ltAllocator&gt::
 
 }
     </code></pre>
+    <br><br>
+
+    <h4>Propagate on Container Swap</h4>
+    <h5>propagate_on_container_swap:</h5>
+    <ul>
+      <li>`std::true_type` or derived from it if the allocators of type `A` need to be swapped when two containers that use them are swapped.</li>
+      <li>If this member is std::true_type or derived from it, type `A` must satisfy Swappable and the swap operation must not throw exceptions.</li>
+      <li>If this member is not provided or derived from `std::false_type` and the allocators of the two containers do not compare equal, the behavior of container swap is undefined.</li>
+    </ul>
+
+    <pre><code class="language-cpp">
+// Example usage.
+constexpr auto swap(Vector &other) noexcept -&gt void {
+  if constexpr (std::allocator_traits&lt
+                    Allocator&gt::propagate_on_container_swap::value) {
+    using std::swap;
+    swap(allocator_, other.allocator_);
+  } else if constexpr (!std::allocator_traits&lt
+                           Allocator&gt::is_always_equal::value) {
+    contract_assert(
+        allocator_ != other.allocator_ &&
+        "If propagate_on_container_swap is not provided or is derived from "
+        "std::false_type and the allocators of the two containers do not "
+        "compare equal, the behavior of container swap is undefined.");
+  }
+
+  std::swap(data_, other.data_);
+  std::swap(size_, other.size_);
+  std::swap(capacity_, other.capacity_);
+}
+    </code></pre>
 
   </body>
 </html>
